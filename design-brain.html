@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>the design brain — case study · nitish kumar jha</title>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>try{if(localStorage.getItem("nj-theme")==="dark")document.documentElement.classList.add("njdark");}catch(e){}</script>
+<style>
+  :root{
+    --paper:#FAFAF7;--ink:#1A1D21;--ink-soft:#59616B;--ink-faint:#99A1AB;
+    --line:rgba(26,29,33,0.13);--line-soft:rgba(26,29,33,0.06);
+    --accent:#6D28D9;--accent-soft:rgba(109,40,217,0.09);
+    --pos:#188A54;--neg:#C93E33;--steel:#5E7A8A;
+    --shadow:0 1px 2px rgba(26,29,33,.04),0 24px 48px -28px rgba(26,29,33,.25);
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,monospace;
+    --col:680px;--fig:940px;--gut:clamp(22px,5vw,40px);
+  }
+  /* deliberately single-theme: light, print-like. pinned across os dark mode and the viewer's toggle. */
+  :root[data-theme="light"],:root[data-theme="dark"]{--paper:#FAFAF7;--ink:#1A1D21;--ink-soft:#59616B;--ink-faint:#99A1AB;--line:rgba(26,29,33,0.13);--line-soft:rgba(26,29,33,0.06);--accent:#6D28D9;--accent-soft:rgba(109,40,217,0.09);--pos:#188A54;--neg:#C93E33;--steel:#5E7A8A;--shadow:0 1px 2px rgba(26,29,33,.04),0 24px 48px -28px rgba(26,29,33,.25);}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:20px;line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--accent-soft);}
+  a{color:var(--accent);text-decoration:none;}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+  .col{max-width:var(--col);margin-left:auto;margin-right:auto;padding-left:var(--gut);padding-right:var(--gut);}
+  .fig{max-width:var(--fig);margin-left:auto;margin-right:auto;padding-left:var(--gut);padding-right:var(--gut);}
+
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:60;transition:width .08s linear;opacity:.8;}
+  .top{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(250,250,247,.92);border-bottom:1px solid var(--line-soft);}
+  .top .in{max-width:var(--fig);margin-left:auto;margin-right:auto;padding:13px var(--gut);display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--sans);}
+  .top .back{font-size:14px;font-weight:600;color:var(--ink-soft);white-space:nowrap;}
+  .top .back:hover{color:var(--ink);}
+  .idx{display:flex;gap:18px;overflow-x:auto;}
+  .idx a{font-size:13px;color:var(--ink-faint);font-weight:500;white-space:nowrap;}
+  .idx a:hover,.idx a.here{color:var(--ink);}
+  @media (max-width:780px){.idx{display:none;}}
+
+  .label{font-family:var(--sans);font-size:12.5px;letter-spacing:.07em;color:var(--accent);font-weight:700;}
+  .livebadge{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12.5px;font-weight:700;color:var(--pos);background:rgba(24,138,84,.08);border:1px solid rgba(24,138,84,.3);border-radius:999px;padding:5px 13px;}
+  .livebadge .dot{width:8px;height:8px;border-radius:50%;background:var(--pos);}
+  @media(prefers-reduced-motion:no-preference){.livebadge .dot{animation:lp 2.2s infinite;}}
+  @keyframes lp{0%{box-shadow:0 0 0 0 rgba(24,138,84,.4);}70%{box-shadow:0 0 0 7px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+
+  header{padding:clamp(60px,11vw,120px) 0 clamp(36px,6vw,64px);}
+  header .label{display:block;margin-bottom:22px;}
+  header h1{font-family:var(--serif);font-weight:600;font-size:clamp(33px,6vw,58px);line-height:1.1;letter-spacing:-.015em;margin:0 0 24px;text-wrap:balance;}
+  header .sub{font-size:clamp(19px,2.3vw,22px);color:var(--ink-soft);margin:0 0 24px;line-height:1.62;}
+  header .meta{font-family:var(--sans);font-size:13.5px;color:var(--ink-faint);margin-top:34px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 30px;}
+  header .meta b{color:var(--ink-soft);font-weight:600;}
+
+  .facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;}
+  .facts .in{max-width:var(--fig);margin-left:auto;margin-right:auto;padding:clamp(22px,3.5vw,34px) var(--gut);display:grid;grid-template-columns:repeat(4,1fr);gap:18px;font-family:var(--sans);}
+  @media (max-width:760px){.facts .in{grid-template-columns:1fr 1fr;gap:16px 14px;}}
+  .facts .f .v{font-weight:800;font-size:clamp(17px,2.2vw,22px);letter-spacing:-.01em;line-height:1.2;font-variant-numeric:tabular-nums;}
+  .facts .f .v em{color:var(--accent);font-style:normal;}
+  .facts .f .k{font-size:12.5px;color:var(--ink-faint);margin-top:5px;line-height:1.4;}
+
+  section{padding:clamp(52px,8vw,92px) 0;}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.028em;line-height:1.08;margin-bottom:18px;text-wrap:balance;}
+  p{margin:0 0 1.05em;color:var(--ink);}
+  p.soft{color:var(--ink-soft);}
+  .big{font-size:clamp(23px,3.1vw,30px);line-height:1.42;letter-spacing:-.01em;color:var(--ink);text-wrap:balance;}
+  .mark{background:linear-gradient(transparent 58%,var(--accent-soft) 58%);}
+  .rule{max-width:var(--col);margin:clamp(16px,3vw,32px) auto;padding-left:var(--gut);padding-right:var(--gut);}
+  .rule span{display:block;height:1px;background:var(--line);}
+
+  /* repo tree card */
+  .repo{max-width:var(--col);margin:clamp(30px,5vw,50px) auto 0;padding-left:var(--gut);padding-right:var(--gut);}
+  .repo .card{background:#161A20;color:#D7DDE5;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;font-family:var(--mono);}
+  .repo .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#1E242C;font-size:12px;color:#8B95A3;}
+  .repo .bar i{width:9px;height:9px;border-radius:50%;background:#39414D;display:inline-block;}
+  .repo .bar .path{margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .repo pre{margin:0;padding:18px 20px;font-size:13px;line-height:1.75;overflow-x:auto;}
+  .repo .c{color:#7BA6F0;} .repo .d{color:#8B95A3;} .repo .g{color:#69B47E;}
+  .repo .cap{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-top:15px;text-align:center;}
+  .repo .cap b{color:var(--ink);font-weight:600;}
+
+  .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,25px);line-height:1.5;color:var(--ink);border-left:3px solid var(--accent);padding-left:22px;margin:26px 0 0;}
+  .quote .who{display:block;font-family:var(--sans);font-style:normal;font-size:12.5px;color:var(--ink-faint);margin-top:10px;}
+
+  /* skill files list */
+  .files{font-family:var(--sans);margin-top:26px;border-top:1px solid var(--line);}
+  .files .r{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-soft);}
+  @media (max-width:560px){.files .r{grid-template-columns:1fr;gap:4px;}}
+  .files .m{font-family:var(--mono);font-size:13.5px;font-weight:600;color:var(--accent);}
+  .files .t{font-size:14.5px;color:var(--ink-soft);line-height:1.5;}
+  .files .t b{color:var(--ink);font-weight:600;}
+
+  ol.pr{list-style:none;counter-reset:p;margin:6px 0 0;padding:0;}
+  ol.pr li{counter-increment:p;position:relative;padding:20px 0 20px 50px;border-top:1px solid var(--line-soft);}
+  ol.pr li:first-child{border-top:none;}
+  ol.pr li::before{content:counter(p,decimal-leading-zero);position:absolute;left:0;top:22px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);}
+  ol.pr h4{font-family:var(--sans);font-size:16.5px;font-weight:700;margin:0 0 5px;}
+  ol.pr p{font-size:16px;color:var(--ink-soft);margin:0;line-height:1.55;}
+
+  .ledger{font-family:var(--sans);margin-top:24px;border-top:1px solid var(--line);}
+  .ledger .r{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--line-soft);}
+  .ledger .r .m{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink);}
+  .ledger .r .s{font-family:var(--mono);font-size:11.5px;white-space:nowrap;}
+  .ledger .r .s.ok{color:var(--pos);} .ledger .r .s.wip{color:var(--steel);}
+
+  .close{padding-top:clamp(46px,8vw,96px);padding-bottom:clamp(46px,8vw,96px);}
+  .close .q{font-size:clamp(22px,3.2vw,30px);line-height:1.46;font-weight:600;letter-spacing:-.01em;color:var(--ink);text-wrap:balance;}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
+  .btn{font-family:var(--sans);display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px;}
+  .btn-p{background:var(--accent);color:#fff;}
+  .btn-g{border:1px solid var(--line);color:var(--ink);}
+  footer{font-family:var(--sans);border-top:1px solid var(--line);padding:26px 0 44px;color:var(--ink-faint);font-size:13px;text-align:center;}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+  @media (max-width:600px){
+    body{font-size:17.5px;}
+    header h1{font-size:clamp(30px,8.6vw,38px);}
+    .big{font-size:clamp(20px,5.6vw,24px);}
+    .btns .btn{width:100%;justify-content:center;}
+    .close .q{font-size:clamp(19px,5.4vw,22px);}
+  }
+</style>
+
+<div class="progress" id="progress"></div>
+<div class="top">
+  <div class="in">
+    <a class="back" href="./index.html">← portfolio</a>
+    <nav class="idx">
+      <a href="#stakes">stakes</a>
+      <a href="#move">the move</a>
+      <a href="#inside">inside the skill</a>
+      <a href="#repo">design → dev</a>
+      <a href="#brain">the brain</a>
+      <a href="#shipped">status</a>
+    </nav><button class="lang" id="njTheme" aria-label="toggle dark theme" title="toggle dark theme"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button>
+  </div>
+</div>
+
+<header id="top">
+  <div class="col">
+    <span class="label reveal">case study · design infrastructure · digistay (current role)</span>
+    <h1 class="reveal">i stopped only designing the screens. i started teaching the company's ai to design.</h1>
+    <p class="sub reveal">digistay runs an internal ai orchestrator — dozens of skills for operations, business rules and integrations. i wrote our design system into it as a skill of its own: 200+ components with priorities, brand rules, tokens, patterns. now anyone can prompt and get on-brand output. and when the fix is small, i don't file a ticket — i open the frontend repo and push the pr myself.</p>
+    <span class="livebadge reveal"><span class="dot"></span> skill live in the orchestrator · design brain in progress</span>
+    <div class="meta reveal">
+      <span><b>role</b> senior product designer — and author of the skill</span>
+      <span><b>surfaces</b> the orchestrator · github · the frontend repo</span>
+    </div>
+  </div>
+</header>
+
+<div class="facts reveal">
+  <div class="in">
+    <div class="f"><div class="v"><em>1 skill</em></div><div class="k">live in the company orchestrator, alongside dozens of ops skills</div></div>
+    <div class="f"><div class="v">8 files</div><div class="k">brand · components · tokens · patterns · icons · grid, as code</div></div>
+    <div class="f"><div class="v">200+</div><div class="k">components codified, each with a priority</div></div>
+    <div class="f"><div class="v">prs, not tickets</div><div class="k">minor ui fixes: i change the code and open the pull request myself</div></div>
+  </div>
+</div>
+
+<section id="stakes" class="block col">
+  <span class="label reveal">why it matters</span>
+  <p class="big reveal" style="margin-top:16px;">every team asks design the same small questions. which component? what spacing? is this on-brand? the design system knows — but it's a document, and documents don't answer.</p>
+  <p class="reveal soft">the orchestrator already knew the business — booking rules, integrations, cost guards. what it didn't have was taste. anything it helped build could be functional and still look wrong. that gap was mine to close: <span class="mark">if the ai knows the design system, everyone has a designer on call.</span></p>
+</section>
+
+<div class="rule reveal"><span></span></div>
+
+<section id="move" class="block col">
+  <span class="label reveal">the move</span>
+  <p class="big reveal" style="margin-top:16px;">i wrote the design system as an agent skill — the same way engineers write business rules.</p>
+  <p class="reveal soft">not a pdf, not a figma page with rules nobody reads on time. a skill in the company repo, versioned, committed, sitting in the orchestrator next to the operational skills. design now lives where the work actually happens.</p>
+</section>
+
+<div class="repo reveal">
+  <div class="card">
+    <div class="bar"><i></i><i></i><i></i><span class="path">digistay-orchestrator / .claude / skills / digistay-design-system</span></div>
+    <pre><span class="d">├─</span> assets/
+<span class="d">├─</span> README.md
+<span class="d">├─</span> SKILL.md
+<span class="d">├─</span> brand.md
+<span class="d">├─</span> components.md      <span class="d">· 200+ components, prioritised</span>
+<span class="d">├─</span> grid-spacing.md
+<span class="d">├─</span> icons.md
+<span class="d">├─</span> patterns.md
+<span class="d">└─</span> tokens.md
+
+<span class="g">commit</span> <span class="c">skills: add digistay-design-system skill</span></pre>
+  </div>
+  <p class="cap"><b>the actual shape of the skill</b> — real file structure from the company repo. one of dozens of skills in the orchestrator; design now sits in that row too.</p>
+</div>
+
+<div class="col">
+  <blockquote class="quote reveal">a skill that teaches the ai the digistay design system — so anyone can prompt "build a booking confirmation page" and get on-brand, responsive, accessible output.
+    <span class="who">— the readme, verbatim in spirit, lowercase by portfolio law</span>
+  </blockquote>
+</div>
+
+<div class="rule reveal" style="margin-top:clamp(36px,6vw,72px);"><span></span></div>
+
+<section id="inside" class="block col">
+  <span class="label reveal">inside the skill</span>
+  <p class="big reveal" style="margin-top:16px;">the hard part wasn't listing components. it was teaching judgment.</p>
+  <div class="files reveal">
+    <div class="r"><span class="m">brand.md</span><span class="t"><b>the non-negotiables.</b> voice, color, what digistay looks like and refuses to look like. everything the brain produces passes through this.</span></div>
+    <div class="r"><span class="m">components.md</span><span class="t"><b>the 200+ list, prioritised.</b> not an inventory — a ranking. the ai reaches for the right component first, not any component that fits.</span></div>
+    <div class="r"><span class="m">tokens.md</span><span class="t"><b>the numbers behind consistency.</b> color, type and spacing as values, so output is measurably on-system, not approximately.</span></div>
+    <div class="r"><span class="m">grid-spacing.md</span><span class="t"><b>how things sit.</b> the rhythm that makes a screen feel like ours before you read a word of it.</span></div>
+    <div class="r"><span class="m">patterns.md</span><span class="t"><b>how screens compose.</b> components are vocabulary; patterns are grammar — list pages, detail pages, modals that behave.</span></div>
+    <div class="r"><span class="m">icons.md + assets/</span><span class="t"><b>the physical vocabulary.</b> what exists, so nothing gets invented twice.</span></div>
+  </div>
+  <p class="reveal soft" style="margin-top:26px;">writing it was its own audit: you cannot hand-wave a priority to a machine. every "it depends" i'd been carrying in my head had to become a rule i could defend.</p>
+</section>
+
+<div class="rule reveal"><span></span></div>
+
+<section id="repo" class="block col">
+  <span class="label reveal">design → dev</span>
+  <p class="big reveal" style="margin-top:16px;">the same fluency runs the other way: when the fix is small, i ship it myself.</p>
+  <p class="reveal soft">copy tweaks, spacing slips, token corrections — the fixes that die in backlogs because a ticket costs more than the change. i make them in the frontend repo and open the pr; engineering reviews and merges. design debt stops accumulating, and the b.tech finally pays rent.</p>
+</section>
+
+<div class="rule reveal"><span></span></div>
+
+<section id="brain" class="block col">
+  <span class="label reveal">where this goes · the design brain</span>
+  <p class="big reveal" style="margin-top:16px;">the skill is the first organ. the brain is the plan.</p>
+  <p class="reveal soft">what i'm building next: an agent with the company's full context — product, users, brand history — that thinks like a senior product designer and a creative head at once. cross-functional teams ask it first: marketing checks a layout, engineering checks a flow, sales mocks a screen for a demo. everything it produces routes through the brand rules before it ships. honestly labeled: <b>in progress</b> — and the parts that exist are already answering questions that used to wait for me.</p>
+</section>
+
+<div class="rule reveal"><span></span></div>
+
+<section class="block col">
+  <span class="label reveal">decisions underneath</span>
+  <ol class="pr" style="margin-top:20px;">
+    <li class="reveal"><h4>write for the machine reader</h4><p>a design system pdf persuades humans; a skill instructs machines. same truths, different grammar — and the machine version never skims.</p></li>
+    <li class="reveal"><h4>priorities, not inventories</h4><p>200 components listed is noise. 200 components ranked is judgment. the ranking is the design work.</p></li>
+    <li class="reveal"><h4>branding is the gate</h4><p>whatever the brain produces, it passes through brand rules before anyone ships it. taste isn't optional at scale — it's enforced.</p></li>
+    <li class="reveal"><h4>design owns the small diffs</h4><p>a ticket for a 4px fix costs more than the fix. push the pr, let engineering review, keep the backlog for real work.</p></li>
+    <li class="reveal"><h4>grow an organ at a time</h4><p>one skill shipped and used beats a grand brain announced. the roadmap is incremental on purpose.</p></li>
+  </ol>
+</section>
+
+<section id="shipped" class="block col">
+  <span class="label reveal">status · honestly labeled</span>
+  <div class="ledger reveal">
+    <div class="r"><span class="m">digistay-design-system skill</span><span class="s ok">● live in the orchestrator</span></div>
+    <div class="r"><span class="m">design → dev prs</span><span class="s ok">● routine practice</span></div>
+    <div class="r"><span class="m">the design brain</span><span class="s wip">◐ in progress</span></div>
+  </div>
+  <p class="reveal soft" style="margin-top:24px;font-family:var(--sans);font-size:14.5px;">the repo is company-internal, so it stays unlinked here — the structure above is its real shape. happy to walk through the actual files in a conversation.</p>
+</section>
+
+<div class="rule reveal"><span></span></div>
+
+<section class="block col">
+  <span class="label reveal">what surprised me</span>
+  <p class="reveal" style="margin-top:16px;">the design system used to be a document people forgot. now it's a colleague people ask. and the act of writing it for a machine made me a sharper designer — every vague preference had to become a defensible rule.</p>
+</section>
+
+<div class="close col">
+  <p class="q reveal">the next design system won't be a pdf. it will be something you talk to. i'd rather be the designer who builds that than the one who waits for it.</p>
+  <div class="btns reveal">
+    <a href="./frolic.html" class="btn btn-p">next: league play at frolic →</a>
+    <a href="mailto:nj.nitishjha@gmail.com" class="btn btn-g"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg> get in touch</a>
+    <a class="btn btn-g" href="https://www.linkedin.com/in/nitish-kumar-jha-28911619b"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg> linkedin</a>
+  </div>
+</div>
+
+<footer>© 2026 nitish kumar jha · product designer · the design brain</footer>
+
+<script>
+  (function(){var b=document.getElementById('progress');
+    function u(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;b.style.width=(m>0?h.scrollTop/m*100:0)+'%';}
+    addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();})();
+  (function(){var links=[].slice.call(document.querySelectorAll('.idx a[href^="#"]')),map={};
+    links.forEach(function(l){var id=l.getAttribute('href').slice(1);if(document.getElementById(id))map[id]=l;});
+    var ids=Object.keys(map);if(!ids.length||!('IntersectionObserver' in window))return;
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)ids.forEach(function(id){map[id].classList.toggle('here',id===e.target.id);});});},{rootMargin:'-40% 0px -55% 0px'});
+    ids.forEach(function(id){io.observe(document.getElementById(id));});})();
+  (function(){var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e);});})();
+</script>
+
+<style>
+/* chat panel (quiet) */
+  .chat-panel{position:fixed;right:clamp(12px,3vw,28px);bottom:clamp(12px,3vw,28px);z-index:95;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100vh - 24px));display:flex;flex-direction:column;overflow:hidden;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 70px -24px rgba(26,29,33,.4),0 4px 12px rgba(26,29,33,.1);opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .22s ease,transform .22s ease;}
+  body.chat-open .chat-panel{opacity:1;transform:none;pointer-events:auto;}
+  @media (prefers-reduced-motion:reduce){.chat-panel{transition:opacity .15s;transform:none;}}
+  .chat-top{display:flex;align-items:center;gap:11px;padding:14px 14px 12px;border-bottom:1px solid var(--line-soft);background:#fff;font-family:var(--sans);}
+  .chat-top .av{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none;}
+  .chat-top .who{flex:1;min-width:0;}
+  .chat-top .who .n{font-weight:700;font-size:14px;}
+  .chat-top .who .s{font-size:12px;color:var(--ink-soft);}
+  .chat-x{border:none;background:transparent;color:var(--ink-soft);cursor:pointer;font-size:20px;line-height:1;width:30px;height:30px;border-radius:8px;}
+  .chat-x:hover{background:var(--paper);color:var(--ink);}
+  .chat-log{flex:1;overflow-y:auto;padding:16px 14px 8px;display:flex;flex-direction:column;gap:10px;font-family:var(--sans);}
+  .msg{max-width:86%;font-size:14px;line-height:1.5;padding:10px 13px;border-radius:14px;}
+  .msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line-soft);border-bottom-left-radius:5px;color:var(--ink);}
+  .msg.me{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px;}
+  .msg.bot a{font-weight:600;}
+  .typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line-soft);border-radius:14px;border-bottom-left-radius:5px;}
+  .typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-faint);display:inline-block;}
+  @media (prefers-reduced-motion:no-preference){.typing i{animation:blink 1.2s infinite;}.typing i:nth-child(2){animation-delay:.2s;}.typing i:nth-child(3){animation-delay:.4s;}}
+  @keyframes blink{0%,60%,100%{opacity:.3;}30%{opacity:1;}}
+  .chat-chips{display:flex;gap:7px;padding:4px 14px 10px;flex-wrap:wrap;font-family:var(--sans);}
+  .chat-chips button{font-family:var(--sans);font-size:12.5px;font-weight:500;cursor:pointer;background:#fff;border:1px solid var(--line);color:var(--ink);padding:6px 11px;border-radius:999px;}
+  .chat-chips button:hover{border-color:var(--accent);color:var(--accent);}
+  .chat-form{display:flex;gap:8px;padding:10px 12px 12px;border-top:1px solid var(--line-soft);background:#fff;}
+  .chat-form input{flex:1;font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 15px;outline:none;}
+  .chat-form input:focus{border-color:var(--accent);}
+  .chat-form button{flex:none;width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;background:var(--accent);color:#fff;font-size:16px;display:grid;place-items:center;}
+
+  .lang{border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-family:var(--sans);font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px;cursor:pointer;margin-right:2px;display:inline-flex;align-items:center;gap:5px;}
+  .lang:hover,.lang.on{border-color:var(--accent);color:var(--accent);}
+  .chat-fab{position:fixed;right:clamp(14px,3vw,26px);bottom:clamp(14px,3vw,26px);z-index:90;width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;background:var(--accent);color:#fff;font-family:var(--sans);font-weight:800;font-size:16px;box-shadow:0 10px 30px -8px rgba(26,29,33,.4);display:grid;place-items:center;transition:transform .18s;}
+  .chat-fab:hover{transform:translateY(-3px);}
+  .chat-fab .dot{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:var(--pos);border:2px solid #fff;}
+  body.chat-open .chat-fab{display:none;}
+  .chat-top .who .s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .nswap .b{display:none;}
+  .chat-top:hover .nswap .a{display:none;}
+  .chat-top:hover .nswap .b{display:inline;}
+  @keyframes avspin{to{transform:rotate(1turn);}}
+  .chat-top .av{position:relative;z-index:0;background:none;}
+  .chat-top .av::after{content:"";position:absolute;inset:-2.5px;border-radius:50%;z-index:-1;background:conic-gradient(var(--accent),transparent 30%,var(--accent) 55%,transparent 80%,var(--accent));}
+  .chat-fab::after{content:"";position:absolute;inset:-3px;border-radius:50%;z-index:-1;background:conic-gradient(var(--accent),transparent 30%,var(--accent) 55%,transparent 80%,var(--accent));}
+  @media(prefers-reduced-motion:no-preference){.chat-top .av::after,.chat-fab::after{animation:avspin 6s linear infinite;}}
+</style>
+<!-- ask nitish — floating chat -->
+<button class="chat-fab" id="chatFab" aria-label="ask nitish" title="ask nitish"><img src="data:image/jpeg;base64,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" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;" /><span class="dot"></span></button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="chat with nitish">
+  <div class="chat-top">
+    <div class="av"><img src="data:image/jpeg;base64,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" alt="illustrated portrait of nitish" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;" /></div>
+    <div class="who"><div class="n nswap"><span class="a">ask nj</span><span class="b">ask nitish</span></div><div class="s">the real one replies by email</div></div>
+    <button class="lang" id="langBtn" aria-label="switch language">हिंदी</button><button class="chat-x" id="chatClose" aria-label="close chat"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="chat-chips" id="chatChips"></div>
+  <form class="chat-form" id="chatForm" autocomplete="off">
+    <input id="chatInput" type="text" placeholder="ask me anything…" aria-label="type your message" />
+    <button type="submit" aria-label="send"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></button>
+  </form>
+</div>
+<script>
+  /* ask nitish — bilingual, page-aware, fail-safe */
+  (function(){
+  try{
+    var PAGE='brain';
+    var open=document.getElementById('chatOpen'),closeBtn=document.getElementById('chatClose'),langBtn=document.getElementById('langBtn'),
+        log=document.getElementById('chatLog'),chips=document.getElementById('chatChips'),form=document.getElementById('chatForm'),
+        input=document.getElementById('chatInput'),started=false,lang='en',busy=false,queue=[];
+    var KYC='./video-kyc.html';
+    var PMS='./hotel-pms.html';
+    var BRAIN='./design-brain.html';
+    var FRO='./frolic.html';
+    var LI='https://www.linkedin.com/in/nitish-kumar-jha-28911619b';
+    var MAIL="<a href='mailto:nj.nitishjha@gmail.com'>nj.nitishjha@gmail.com</a>";
+    function down(){log.scrollTop=log.scrollHeight;}
+    function me(t){var d=document.createElement('div');d.className='msg me';d.textContent=t;log.appendChild(d);down();}
+    function bot(html){var d=document.createElement('div');d.className='msg bot';d.innerHTML=html;log.appendChild(d);down();}
+    function typing(html){busy=true;var t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';log.appendChild(t);down();
+      setTimeout(function(){try{t.remove();bot(html);renderChips(lang==='hi'?HI_CHIPS:EN_CHIPS);}catch(e){}busy=false;if(queue.length){respond(queue.shift());}},420+Math.min(html.length,420)*0.6);}
+    var EN_CHIPS=(PAGE==='brain')?["what's the design brain?","walk me through the hotel pms","the kyc story, short version","are you open to work?"]:(PAGE==='kyc')?["explain smart consent simply","what happens on a dropped call?","tell me about the hotel pms","are you open to work?"]
+      :(PAGE==='pms')?["what's the ₹0 line about?","how does night audit work?","tell me about the kyc project","are you open to work?"]
+      :["what are you proudest of?","walk me through the hotel pms","the kyc story, short version","are you open to work?"];
+    var HI_CHIPS=(PAGE==='brain')?["design brain क्या है?","hotel pms के बारे में बताइए","kyc की कहानी, छोटे में","काम के लिए available हैं?"]:(PAGE==='kyc')?["smart consent आसान भाषा में?","call कट जाए तो क्या होता है?","hotel pms के बारे में बताइए","काम के लिए available हैं?"]
+      :(PAGE==='pms')?["₹0 वाली line क्या है?","night audit कैसे काम करता है?","kyc project के बारे में बताइए","काम के लिए available हैं?"]
+      :["आप क्या करते हैं?","projects क्या किए हैं?","hotel pms के बारे में बताइए","काम के लिए available हैं?"];
+    function ref(en,hi,links){var l=links.map(function(x){return "<a href='#"+x[0]+"'>"+x[1]+"</a>";}).join(" · ");
+      return "<br><span style='opacity:.72;font-size:12.5px;'>"+(lang==='hi'?hi:en)+" "+l+"</span>";}
+    function pageRef(id){
+      if(PAGE==='kyc'){
+        if(id==='kyc')return ref("on this page:","इसी page पर:",[['smart','smart consent'],['agent','agent flow'],['live','see it running']]);
+        if(id==='votp')return ref("on this page:","इसी page पर:",[['smart','the otp gate']]);
+        if(id==='edge')return ref("on this page:","इसी page पर:",[['edge','when it doesn’t go smoothly']]);
+        if(id==='work'||id==='projects')return ref("you’re reading the kyc one — jump to:","आप kyc वाली पढ़ रहे हैं — देखिए:",[['stakes','stakes'],['results','what shipped']]);
+      }
+      if(PAGE==='pms'){
+        if(id==='hotel')return ref("on this page:","इसी page पर:",[['fix','guest accounts'],['journey','the journey'],['shipped','what shipped']]);
+        if(id==='ga')return ref("on this page:","इसी page पर:",[['fix','the guest account chapter']]);
+        if(id==='night')return ref("on this page:","इसी page पर:",[['nightaudit','the night audit chapter']]);
+        if(id==='research')return ref("on this page:","इसी page पर:",[['research','how it was grounded']]);
+        if(id==='work'||id==='projects')return ref("you’re reading the hotel one — jump to:","आप hotel वाली पढ़ रहे हैं — देखिए:",[['fix','guest accounts'],['hours','the hours']]);
+      }
+      if(PAGE==='brain'){
+        if(id==='brain')return ref("on this page:","इसी page पर:",[['move','the move'],['inside','inside the skill'],['brain','where this goes']]);
+        if(id==='work'||id==='projects')return ref("you're reading the design brain — jump to:","आप design brain पढ़ रहे हैं — देखिए:",[['inside','inside the skill'],['shipped','status']]);
+      }
+      return "";
+    }
+    var INTENTS=[
+      {id:'hello',k:['hello','hi ','hey','namaste','नमस्ते','hii','hola'],
+       r:"hey! you found the guided me — the real one is probably in figma right now. ask me anything about the work, or tap one of these.",
+       rh:"नमस्ते! मैं नितीश — product designer। आसान शब्दों में: मैं मुश्किल systems को simple बनाता हूँ। पूछिए, जो भी जानना हो।"},
+      {id:'whatdo',k:['what do you do','who are you','about you','क्या करते','kya karte','कौन हैं','kaun ho'],
+       r:"i'm a product designer, three-plus years in. i take the complicated middle of fintech and hotel software — permissions, billing, verification — and make it feel obvious. research to handoff, all of it mine.",
+       rh:"मैं product designer हूँ, 3+ साल से। fintech और hotels के मुश्किल software को आसान बनाता हूँ — research से final design तक, पूरा काम मेरा।"},
+      {id:'projects',k:['projects','kaun se project','क्या किए','kya kiye','कौन से'],
+       r:"three, these days. the hotel pms at digistay — eight modules, all live, ~30,000 check-ins a month. video kyc at surepass — 2,000+ verified daily. and the newest: i taught digistay's ai orchestrator our design system, as a skill. <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>",
+       rh:"अब तीन। digistay का hotel pms — 8 modules, सब live, हर महीने ~30,000 check-ins। surepass का video kyc — रोज़ 2,000+ verifications। और सबसे नया: digistay के ai को design system सिखाया, skill बनाकर। <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>"},
+      {id:'proud',k:['proud','best work','favourite','favorite','highlight'],
+       r:"honestly? two things. the voice otp idea in kyc — a photo can't speak a fresh code. and the ₹0.00 line in the hotel pms — a waived charge stays visible, so generosity shows and leakage can't hide.",
+       rh:"सच बोलूँ तो दो चीज़ें। kyc का voice otp — photo code बोल नहीं सकती। और hotel pms की ₹0.00 line — माफ किया charge भी दिखता है, चुपचाप कुछ leak नहीं होता।"},
+      {id:'kyc',k:['kyc','surepass','verification','identity','smart consent','video'],
+       r:"at surepass i designed video kyc both ways: an agent-led flow for people who need a human, and smart consent where ai does the judging — your face gates the flow, then you speak a one-time code aloud. 20+ clients, 2,000+ verifications a day."+(PAGE!=='kyc'?" <a href='"+KYC+"'>full story →</a>":""),
+       rh:"surepass में video kyc दो तरह का: agent के साथ, और smart consent — बिना agent। चेहरा frame में आए तभी otp दिखता है, और आप code बोल के verify होते हैं। 20+ clients, रोज़ 2,000+ verifications।"+(PAGE!=='kyc'?" <a href='"+KYC+"'>पूरी कहानी →</a>":"")},
+      {id:'votp',k:['voice otp','otp','liveness','spoof','face detect'],
+       r:"the trick is the order: the code appears only after your face is aligned. show it earlier and people read it from anywhere. a recording can't guess a fresh code; a photo can't speak.",
+       rh:"trick order में है: पहले चेहरा, फिर code। पहले दिखा दो तो कहीं से भी बोल देंगे। recording नया code guess नहीं कर सकती, photo बोल नहीं सकती।"},
+      {id:'edge',k:['drop','edge case','fail','network','queue','busy','unavailable','call कट'],
+       r:"my rule: never dead-end a user. agents busy? live queue timer, or book a slot. night audit incomplete? the day won't close. the unhappy path gets as much design as the happy one.",
+       rh:"मेरा नियम: user को कभी बंद रास्ते पर मत छोड़ो। agent busy — timer और slot booking। night audit अधूरा — दिन बंद ही नहीं होगा। मुश्किल रास्तों पर भी उतनी ही मेहनत।"},
+      {id:'hotel',k:['hotel','pms','digistay','check-in','property','होटल'],
+       r:"my day job at digistay — eight modules in eight months, all live, ~30,000 check-ins a month. start with guest accounts: the bill splits at the source, every charge picks its wallet the moment it's added."+(PAGE!=='pms'?" <a href='"+PMS+"'>full case study →</a>":""),
+       rh:"digistay में मेरा रोज़ का काम — 8 modules, 8 महीने, सब live, हर महीने ~30,000 check-ins। guest account से शुरू कीजिए: हर charge उसी वक्त सही खाते में जाता है।"+(PAGE!=='pms'?" <a href='"+PMS+"'>पूरी case study →</a>":"")},
+      {id:'ga',k:['guest account','₹0','waive','split','billing','invoice'],
+       r:"guest accounts was never the request — clean invoices were. one account per room automatically, n accounts if needed, every charge placed as it happens. a waived charge shows ₹0.00 instead of vanishing.",
+       rh:"किसी ने guest account नहीं माँगा था — साफ invoice चाहिए था। हर room का account अपने आप, चाहो तो और, हर charge उसी वक्त सही जगह। माफ किया charge भी ₹0.00 दिखता है।"},
+      {id:'night',k:['night audit','2am','close the day','audit'],
+       r:"the hotel's daily financial close, done by the person least awake in the building. four queues with live counts that must hit zero; leave halfway and it stops you. certainty for the 2am user.",
+       rh:"hotel का रोज़ का हिसाब, रात 2 बजे। चार queues, हर count zero होना ज़रूरी। बीच में छोड़ो तो system रोक देता है। 2 बजे वाले को certainty चाहिए।"},
+      {id:'process',k:['process','how do you work','approach','method','कैसे काम'],
+       r:"who touches the system before what it looks like — roles, permissions, the money trail. then flows, ui, handoff. and 15–20 user interviews every month, no exceptions.",
+       rh:"पहले ये कि use कौन करेगा, फिर flows, फिर design, फिर handoff। और हर महीने 15–20 users से बात — बिना नागा।"},
+      {id:'research',k:['research','interview','mixpanel','user testing','data'],
+       r:"15–20 interviews a month against 500 active users, mixpanel for behaviour, the company mis for operations. when i quote a number, it's measured — not estimated.",
+       rh:"हर महीने 15–20 interviews, 500 active users। behaviour के लिए mixpanel, operations के लिए mis। मेरा हर number नापा हुआ है।"},
+      {id:'tools',k:['tool','figma','claude','lovable','gemini','chatgpt','stack','your skills','skills'],
+       r:"figma and framer for craft. claude and chatgpt for flow logic and microcopy, lovable for prototypes, gemini and ux pilot for audits. a third of my time back, spent on judgment calls.",
+       rh:"figma, framer — और speed के लिए ai: claude, chatgpt, lovable, gemini। एक तिहाई time बचता है, जो सोचने में लगता है।"},
+      {id:'hire',k:['hire','open to','job','role','available','opportunity','join','naukri','काम के लिए','b2c','consumer'],
+       r:"yes — actively, and i'm not fussy about the label. i've gone deep in fintech and b2b saas, and i'm genuinely keen on b2c too — new domains are how i learn fastest. if the problem is interesting, i'm interested. write to "+MAIL+" — i reply fast.",
+       rh:"हाँ, बिल्कुल — और मैं किसी एक डब्बे में बंद नहीं हूँ। fintech और b2b में गहरा काम किया है, पर b2c में भी उतना ही interest है — नए domain से ही सबसे तेज़ सीखता हूँ। problem interesting हो तो मैं ready हूँ। email: "+MAIL},
+      {id:'location',k:['location','where are you','based','relocate','relocation','city','bangalore','bengaluru','ncr','pune','hyderabad','gurugram','gurgaon','delhi','kolkata','dehradun','remote','onsite','कहाँ','shehar','शहर'],
+       r:"i'm based in india and open to working anywhere in it — remote works too. preferred cities: bangalore, delhi ncr (including gurugram), pune, hyderabad, kolkata and dehradun. relocation isn't a blocker; an interesting problem is the only real bar.",
+       rh:"मैं india में हूँ और पूरे india में काम के लिए open हूँ — remote भी चलता है। पसंदीदा शहर: bangalore, delhi ncr (gurugram समेत), pune, hyderabad, kolkata और dehradun। शहर से ज़्यादा ज़रूरी है कि problem interesting हो।"},
+      {id:'contact',k:['contact','email','reach','phone','talk','संपर्क'],
+       r:"easiest: "+MAIL+", linkedin (<a href='"+LI+"'>profile</a>), or +91 70043 38374. tell me what you're building.",
+       rh:"सबसे आसान: "+MAIL+", या +91 70043 38374। बताइए क्या बना रहे हैं।"},
+      {id:'work',k:['work','case','portfolio','show me','काम दिखा'],
+       r:"the hotel pms at digistay (<a href='"+PMS+"'>case study</a>), video kyc at surepass (<a href='"+KYC+"'>case study</a>), the design brain (<a href='"+BRAIN+"'>story</a>), and league play at frolic (<a href='"+FRO+"'>case study</a>).",
+       rh:"digistay का hotel pms (<a href='"+PMS+"'>case study</a>), surepass का video kyc (<a href='"+KYC+"'>case study</a>), design brain (<a href='"+BRAIN+"'>कहानी</a>), और frolic का league play (<a href='"+FRO+"'>case study</a>)।"},
+      {id:'exp',k:['experience','years of','how long','how many years','कितने साल','kitne saal'],
+       r:"three-plus years, full-time product design. the short arc: reliance fynd (intern → trainee, consumer gaming) → freelance across three industries → surepass (fintech, video kyc) → now senior product designer at digistay. every step took me deeper into the complicated middle of products.",
+       rh:"3+ साल का full-time product design। सफर: reliance fynd (intern → trainee) → freelance → surepass (fintech) → अब digistay में senior product designer। हर कदम पर products का मुश्किल हिस्सा और गहरा समझा।"},
+      {id:'company',k:['last company','current company','where do you work','working now','previous company','present company','अभी कहाँ'],
+       r:"right now: senior product designer at digistay, since december 2025 — the hotel pms is mine end to end. before that: surepass technologies, 2024 to november 2025, where i designed the video kyc system and a zero-code flow builder.",
+       rh:"अभी: digistay में senior product designer, december 2025 से — hotel pms पूरा मेरा है। उससे पहले: surepass technologies (2024 → nov 2025), जहाँ video kyc system design किया।"},
+      {id:'history',k:['career','journey','work history','timeline','background','companies','सफर'],
+       r:"the whole road: 2022–23, reliance fynd — owned the frolic app ui, 20+ usability fixes shipped. 2023–24, freelance — three clients, three industries, brand to build. 2024–25, surepass — video kyc, 2,000+ daily verifications. december 2025 to now, digistay — eight pms modules, all live.",
+       rh:"पूरा सफर: 2022–23 reliance fynd — frolic app ui। 2023–24 freelance — तीन clients, तीन industries। 2024–25 surepass — video kyc, रोज़ 2,000+ verifications। dec 2025 से digistay — 8 modules, सब live।"},
+      {id:'edu',k:['education','degree','college','b.tech','btech','university','graduate','cgpa','पढ़ाई','studied','where did you study'],
+       r:"b.tech in computer science, 2019–2023 (rgpv), 9.04 cgpa. the engineering background is why i'm comfortable inside the frontend repo — i push minor prs myself instead of filing tickets.",
+       rh:"b.tech computer science, 2019–2023 (rgpv), 9.04 cgpa। engineering background की वजह से frontend repo में भी comfortable हूँ — छोटे बदलाव खुद pr करके भेज देता हूँ।"},
+      {id:'fynd',k:['fynd','frolic','reliance','intern','gaming app','fan11'],
+       r:"reliance fynd was my start — intern to trainee within one cycle. i owned the frolic fantasy-gaming app ui and designed league play: qr scan-to-join, captains building teams, one leaderboard, one reward. usability testing surfaced 20+ friction points, all fixed with engineering. <a href='"+FRO+"'>the case study →</a>",
+       rh:"reliance fynd मेरी शुरुआत थी — एक ही cycle में intern से trainee। frolic का league play मैंने design किया: qr से scan करके join, captain team बनाता है, एक leaderboard, एक reward। testing से 20+ दिक्कतें निकालीं। <a href='"+FRO+"'>case study →</a>"},
+      {id:'freelance',k:['freelance','sinista','dhoomak','baby ed','clients before'],
+       r:"a year of freelance across three industries: sinista pharma (site designed and built in framer, live in 3 weeks), baby ed (a multilingual study-abroad platform), and dhoomak (restaurant inventory ui that cut manual ordering ~60%). brand to build, all mine.",
+       rh:"एक साल freelance, तीन industries: sinista pharma (3 हफ्ते में live), baby ed (multilingual platform), dhoomak (inventory ui, manual ordering ~60% कम)। brand से build तक, सब मेरा।"},
+      {id:'strength',k:['strength','strengths','weakness','weaknesses','why should we hire','why you','why hire'],
+       r:"strength: the complicated middle — permissions, billing, verification — i make it feel obvious, and i ship against evidence, not opinions. honest weakness: i over-obsess edge cases; timeboxing keeps that useful instead of endless. why me? 30,000 check-ins and 2,000 verifications a day already trust my screens.",
+       rh:"strength: मुश्किल systems को simple बनाना, और अंदाज़े से नहीं — सबूत से design करना। सच वाली कमज़ोरी: edge cases पर ज़रूरत से ज़्यादा सोचता हूँ; timebox करके काबू में रखता हूँ। hire क्यों? मेरी screens पर रोज़ 30,000 check-ins और 2,000 verifications चलते हैं।"},
+      {id:'brain',k:['design brain','orchestrator','agent skill','design system skill','github','claude skill','pull request',' pr ','frontend repo'],
+       r:"my newest thing: i wrote digistay's design system into the company's ai orchestrator as a skill — 200+ components with priorities, brand rules, tokens — so anyone can prompt and get on-brand output. small frontend fixes i pr myself. next: a full design brain with company context. <a href='"+BRAIN+"'>the story →</a>",
+       rh:"मेरा सबसे नया काम: digistay के ai orchestrator में design system को skill बनाकर डाला — 200+ components priorities के साथ, brand rules, tokens — कोई भी prompt करे, on-brand output मिले। छोटे frontend बदलाव खुद pr करता हूँ। आगे: पूरा design brain। <a href='"+BRAIN+"'>पूरी कहानी →</a>"},
+      {id:'thanks',k:['thank','thanks','shukriya','धन्यवाद','great','nice','awesome','cool'],
+       r:"glad it landed. anything else — the work, the process, or a role you have in mind?",
+       rh:"अच्छा लगा! और कुछ पूछना हो — काम, process, या कोई role — बताइए।"},
+      {id:'bye',k:['bye','goodbye','see you','अलविदा'],
+       r:"thanks for stopping by. if anything stuck with you, "+MAIL+" is the fastest way to continue this.",
+       rh:"आने के लिए शुक्रिया! कुछ भी हो तो "+MAIL+" पर लिखिए।"},
+      {id:'botq',k:['are you real','are you a bot','are you ai','chatbot','who made','robot'],
+       r:"fair question. i'm a guided script nitish wrote himself — not a live ai, and nothing you type leaves this page. the real nitish reads email though: "+MAIL,
+       rh:"सही सवाल। मैं nitish का लिखा हुआ guided script हूँ — live ai नहीं, और आपकी बात इस page से बाहर नहीं जाती। असली nitish को email कीजिए: "+MAIL},
+      {id:'help',k:['help','what can you','how does this work','options'],
+       r:"i can talk about nitish's projects (hotel pms, video kyc), how he designs, his research habits, tools, and whether he's open to work. in english or हिंदी — the toggle is up top. anything past that: "+MAIL,
+       rh:"मैं nitish के projects (hotel pms, video kyc), उसका design तरीका, research, tools, और availability बता सकता हूँ। english या हिंदी — toggle ऊपर है। इससे आगे: "+MAIL}
+    ];
+    var RUDE=['fuck','shit','bitch','bastard','chutiya','bsdk','madarchod','bhenchod',' mc ',' bc '];
+    var SENS=['salary','ctc','package','notice period','married','age','religion','caste','girlfriend','personal'];
+    function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+    var lastPick={};
+    function pick(key,arr){var i=Math.floor(Math.random()*arr.length);if(arr.length>1&&lastPick[key]===i)i=(i+1)%arr.length;lastPick[key]=i;return arr[i];}
+    function frame(key,arr,qq){var s=pick(key,arr);var t=(qq||'').length>42?qq.slice(0,42)+'…':(qq||'');return s.split('{q}').join('“'+esc(t)+'”');}
+    var SENS_EN=[
+      "ha — {q} is very much a real-conversation question. the widget me pleads the fifth; the real me answers properly on email: "+MAIL,
+      "{q}? bold, i respect it :) that one's above a script's pay grade — the real nitish will give you a straight answer: "+MAIL,
+      "i'm programmed to blush at {q} :) email the real one — he's refreshingly direct about these things: "+MAIL];
+    var SENS_HI=[
+      "{q} — वाह, सीधा सवाल! script वाला मैं यहाँ चुप है, असली nitish email पर साफ जवाब देगा: "+MAIL,
+      "{q} का जवाब widget नहीं देता :) असली से पूछिए, वो इन चीज़ों में एकदम साफ है: "+MAIL];
+    var FBP_EN=[
+      "hmm, {q} — that's outside my script, and i'd rather admit it than fake it. the real nitish will have an opinion: "+MAIL,
+      "you got me — {q} isn't in my notes. i'm great on kyc, the hotel pms, process and hiring; for everything else there's "+MAIL,
+      "{q} deserves better than a widget's guess. one email, real answer: "+MAIL];
+    var FBP_HI=[
+      "{q} — ये मेरी script के बाहर है :) असली nitish से पूछिए: "+MAIL,
+      "सच कहूँ, {q} मेरे notes में नहीं है। kyc, hotel pms, process, hiring — ये सब पूछिए। बाकी के लिए: "+MAIL];
+    var RUDE_EN=[
+      "easy there :) i'm just a friendly script — save the spice for the group chat. work questions? i'm all yours.",
+      "i'd blush if i could render it :) let's talk projects, process, or hiring instead."];
+    var RUDE_HI=[
+      "आराम से :) मैं simple सा script हूँ। काम की बात कीजिए — projects, process, hiring।",
+      "इतना गुस्सा? :) चलिए काम की बात करते हैं — kyc, hotel pms, या hiring।"];
+    var FB_EN="that's outside my script — the real nitish is one email away: "+MAIL;
+    function detectHi(t){return /[ऀ-ॿ]/.test(t)||/\b(kya|kaise|aap|batao|bataiye|kaam|karte|hindi|naukri)\b/i.test(t);}
+    function setLang(l){lang=l;if(langBtn)langBtn.textContent=(l==='hi')?'english':'हिंदी';}
+    function respond(t){
+      try{
+        t=String(t||'').replace(/\s+/g,' ').trim().slice(0,300);
+        if(!t){typing(lang==='hi'?"कुछ तो पूछिए :) — projects, process, या hiring?":"ask me something :) — projects, process, or hiring?");return;}
+        if(detectHi(t)&&lang!=='hi')setLang('hi');
+        var q=' '+t.toLowerCase()+' ';
+        for(var i=0;i<RUDE.length;i++){if(q.indexOf(RUDE[i])!==-1){
+          typing(pick('rude',lang==='hi'?RUDE_HI:RUDE_EN));return;}}
+        for(var j=0;j<SENS.length;j++){if(q.indexOf(SENS[j])!==-1){
+          typing(frame('sens',lang==='hi'?SENS_HI:SENS_EN,t));return;}}
+        var best=null,bs=0;
+        INTENTS.forEach(function(it){var s=0;it.k.forEach(function(k){if(q.indexOf(k)!==-1)s+=k.length;});if(s>bs){bs=s;best=it;}});
+        if(bs>0){typing((lang==='hi'?best.rh:best.r)+pageRef(best.id));}
+        else{typing(frame('fb',lang==='hi'?FBP_HI:FBP_EN,t));}
+      }catch(e){try{bot(FB_EN);}catch(e2){}}
+    }
+    function renderChips(list){try{chips.innerHTML='';(list||[]).forEach(function(s){var b=document.createElement('button');b.type='button';b.textContent=s;
+      b.addEventListener('click',function(){send(s);});chips.appendChild(b);});}catch(e){}}
+    function send(t){me(t);input.value='';if(busy){if(queue.length<4)queue.push(t);}else{respond(t);}}
+    function openChat(){document.body.classList.add('chat-open');
+      if(!started){started=true;
+        var g=(PAGE==='brain')?"hey — nitish here, the guided version. you're on the design brain story — the ai side of my work. ask about it, or anything else i've shipped. हिंदी में भी पूछ सकते हैं।"
+         :(PAGE==='kyc')?"hey — nitish here, the guided version. you're on my video kyc case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
+         :(PAGE==='pms')?"hey — nitish here, the guided version. you're on my hotel pms case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
+         :"hey — nitish here. well, the guided version; the real one is probably moving a charge to a guest account right now. ask me about the work, how i think, or whether i'm up for a role. हिंदी में भी पूछ सकते हैं — बस लिखिए।";
+        typing(g);}
+      setTimeout(function(){try{input.focus();}catch(e){}},240);}
+    if(open)open.addEventListener('click',openChat);
+    var fabBtn=document.getElementById('chatFab');if(fabBtn)fabBtn.addEventListener('click',openChat);
+    if(langBtn)langBtn.addEventListener('click',function(){
+      setLang(lang==='hi'?'en':'hi');
+      typing(lang==='hi'?"ठीक है — अब हिंदी में! पूछिए, मैं क्या करता हूँ, कौन से projects किए हैं।":"back to english — ask me anything about the work.");
+    });
+    if(closeBtn)closeBtn.addEventListener('click',function(){document.body.classList.remove('chat-open');(open||fabBtn||document.body).focus();});
+    if(form)form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();if(v)send(v);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('chat-open')){document.body.classList.remove('chat-open');}});
+  }catch(e){}
+  })();
+</script>
+
+<style>
+  :root.njdark{--paper:#14161A;--ink:#ECEEF1;--ink-soft:#A9B0BA;--ink-faint:#737B88;--line:rgba(236,238,241,.15);--line-soft:rgba(236,238,241,.07);--accent:#B294F7;--accent-soft:#B294F7S;--warm:#8FA6B4;--pos:#3FBF7F;--neg:#F07A6E;--steel:#8FA6B4;--shadow:0 1px 2px rgba(0,0,0,.5),0 24px 48px -28px rgba(0,0,0,.75);}
+  :root.njdark .top{background:rgba(20,22,26,.92);}
+  :root.njdark .facts,:root.njdark .ledger,:root.njdark .sign,:root.njdark .flag,:root.njdark .frame,:root.njdark .skill-card,:root.njdark .how .c{background:#191C22;}
+  :root.njdark .chat-top,:root.njdark .chat-form,:root.njdark .msg.bot,:root.njdark .chat-chips button,:root.njdark .lang{background:#1B1F26;}
+  :root.njdark .chat-panel{background:#14161A;}
+  :root.njdark .chat-form input{background:#14161A;}
+  :root.njdark .chat-x:hover{background:#242932;}
+  :root.njdark img[alt*="illustrated portrait of nitish kumar jha"]{box-shadow:0 0 0 2px #242932,0 4px 14px rgba(0,0,0,.5) !important;}
+  :root.njdark .btn-p{color:#14161A;}
+  :root.njdark .msg.me{color:#14161A;}
+  :root.njdark .chat-form button[type="submit"]{color:#14161A;}
+  :root.njdark .flag .go,:root.njdark .logrow:hover h3{filter:none;}
+  :root.njdark ::selection{background:#B294F7S;}
+</style>
+<script>
+  (function(){try{
+    var b=document.getElementById('njTheme');if(!b)return;
+    var SUN='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>',MOON='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>';
+    function set(d){document.documentElement.classList.toggle('njdark',d);b.innerHTML=d?SUN:MOON;try{localStorage.setItem('nj-theme',d?'dark':'light');}catch(e){}}
+    var s=null;try{s=localStorage.getItem('nj-theme');}catch(e){}
+    set(s==='dark');
+    b.addEventListener('click',function(){set(!document.documentElement.classList.contains('njdark'));});
+  }catch(e){}})();
+</script>
+
+<style>
+  .njload{position:fixed;inset:0;z-index:200;background:var(--paper);display:none;align-items:center;justify-content:center;flex-direction:column;gap:18px;font-family:var(--sans);}
+  :root.njload-on .njload{display:flex;}
+  .njload .ring{width:46px;height:46px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);}
+  .njload .t{font-size:14px;color:var(--ink-soft);}
+  .njload .bar{width:180px;height:4px;border-radius:4px;background:var(--line-soft);overflow:hidden;position:relative;}
+  @media(prefers-reduced-motion:no-preference){
+    .njload .ring{animation:njspin .8s linear infinite;}
+    .njload .bar::after{content:"";position:absolute;top:0;left:-40%;width:40%;height:100%;border-radius:4px;background:var(--accent);animation:njslide 1.1s ease-in-out infinite;}
+  }
+  @keyframes njspin{to{transform:rotate(1turn);}}
+  @keyframes njslide{to{left:100%;}}
+</style>
+<div class="njload" role="status" aria-live="polite"><div class="ring"></div><div class="t">opening…</div><div class="bar"></div></div>
+<script>
+  (function(){try{
+    var ov=document.querySelector('.njload');if(!ov)return;
+    var tt=ov.querySelector('.t');
+    function show(t){tt.textContent=t;document.documentElement.classList.add('njload-on');}
+    function hide(){document.documentElement.classList.remove('njload-on');}
+    document.addEventListener('click',function(e){
+      var a=e.target&&e.target.closest?e.target.closest('a[href$=".html"]'):null;
+      if(!a)return;
+      if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target==='_blank')return;
+      var label=(a.textContent||'').replace(/[→←]/g,'').replace(/\s+/g,' ').trim().toLowerCase();
+      if(label.length>34)label=label.slice(0,34)+'…';
+      show(label?('opening '+label+'…'):'opening…');
+      setTimeout(hide,9000);
+    },true);
+    addEventListener('pageshow',function(){hide();});
+    addEventListener('pagehide',function(){hide();});
+  }catch(e){}})();
+</script>
+
+</body>
+</html>
