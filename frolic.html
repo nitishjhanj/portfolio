@@ -6,6 +6,7 @@
 </head>
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" /><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&family=Shantell+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
 <script>try{if(localStorage.getItem("nj-theme")==="dark")document.documentElement.classList.add("njdark");}catch(e){}</script>
 <style>
   :root{
@@ -14,8 +15,8 @@
     --accent:#4F46E5;--accent-soft:rgba(79,70,229,0.09);
     --pos:#188A54;--neg:#C93E33;
     --shadow:0 1px 2px rgba(26,29,33,.04),0 24px 48px -28px rgba(26,29,33,.25);
-    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:'Quicksand',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:'Nunito',ui-sans-serif,system-ui,-apple-system,sans-serif;
     --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,monospace;
     --col:680px;--fig:940px;--gut:clamp(22px,5vw,40px);
   }
@@ -309,7 +310,7 @@
       {id:'hello',k:['hello','hi ','hey','namaste','नमस्ते','hii','hola'],
        r:"hey! you found the guided me — the real one is probably in figma right now. ask me anything about the work, or tap one of these.",
        rh:"नमस्ते! मैं नितीश — product designer। आसान शब्दों में: मैं मुश्किल systems को simple बनाता हूँ। पूछिए, जो भी जानना हो।"},
-      {id:'whatdo',k:['what do you do','who are you','about you','क्या करते','kya karte','कौन हैं','kaun ho'],
+      {id:'whatdo',k:['what do you do','who are you','about you','about yourself','tell me about yourself','क्या करते','kya karte','कौन हैं','kaun ho','अपने बारे'],
        r:"i'm a product designer, three-plus years in. i take the complicated middle of fintech and hotel software — permissions, billing, verification — and make it feel obvious. research to handoff, all of it mine.",
        rh:"मैं product designer हूँ, 3+ साल से। fintech और hotels के मुश्किल software को आसान बनाता हूँ — research से final design तक, पूरा काम मेरा।"},
       {id:'projects',k:['projects','kaun se project','क्या किए','kya kiye','कौन से'],
@@ -360,7 +361,7 @@
       {id:'exp',k:['experience','years of','how long','how many years','कितने साल','kitne saal'],
        r:"three-plus years, full-time product design. the short arc: reliance fynd (intern → trainee, consumer gaming) → freelance across three industries → surepass (fintech, video kyc) → now senior product designer at digistay. every step took me deeper into the complicated middle of products.",
        rh:"3+ साल का full-time product design। सफर: reliance fynd (intern → trainee) → freelance → surepass (fintech) → अब digistay में senior product designer। हर कदम पर products का मुश्किल हिस्सा और गहरा समझा।"},
-      {id:'company',k:['last company','current company','where do you work','working now','previous company','present company','अभी कहाँ'],
+      {id:'company',k:['last company','current company','current role','where do you work','working now','previous company','present company','अभी कहाँ'],
        r:"right now: senior product designer at digistay, since december 2025 — the hotel pms is mine end to end. before that: surepass technologies, 2024 to november 2025, where i designed the video kyc system and a zero-code flow builder.",
        rh:"अभी: digistay में senior product designer, december 2025 से — hotel pms पूरा मेरा है। उससे पहले: surepass technologies (2024 → nov 2025), जहाँ video kyc system design किया।"},
       {id:'history',k:['career','journey','work history','timeline','background','companies','सफर'],
@@ -522,5 +523,17 @@
   }catch(e){}})();
 </script>
 
+<style>
+  /* friendly type pass — quicksand headings, nunito body, shantell handwritten accents */
+  h1,h2,h3,h4,.big,.close .q{font-family:'Quicksand',var(--sans);}
+  .hello,.hi,.pill,.livebadge,.badge{font-family:'Shantell Sans','Segoe Print','Comic Sans MS',cursive;letter-spacing:.01em;}
+  .hello{font-size:17px;}
+  .pill{font-size:14px;font-weight:600;background:#fff;color:var(--ink);border:1px solid var(--line);padding:5px 15px;}
+  .livebadge,.badge{font-size:13.5px;font-weight:600;}
+  :root.njdark .pill{background:#1B1F26;}
+  @media (max-width:600px){.pill{font-size:12.5px;padding:4px 11px;}}
+  .lrow .v{font-family:'Quicksand',var(--sans);font-weight:700;letter-spacing:0;}
+  .facts .f .v,.nums .n,.stat .hero-n,.costs .r .val{font-family:'Quicksand',var(--sans);}
+</style>
 </body>
 </html>
