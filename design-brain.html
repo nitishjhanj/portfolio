@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>the design brain — case study · nitish kumar jha</title>
+<meta name="description" content="turning a 200+ component design system into an ai skill inside the company orchestrator — design shipping ~35% faster." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%236D28D9'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='26' font-weight='bold' fill='white' text-anchor='middle'%3Enj%3C/text%3E%3C/svg%3E" />
+<meta property="og:title" content="Design Brain Case Study — Nitish Kumar Jha" />
+<meta property="og:description" content="turning a 200+ component design system into an ai skill inside the company orchestrator — design shipping ~35% faster." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<title>Design Brain Case Study — Nitish Kumar Jha</title>
 </head>
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -147,7 +153,7 @@
 <header id="top">
   <div class="col">
     <span class="label reveal">case study · design infrastructure · digistay (current role)</span>
-    <h1 class="reveal">i stopped only designing the screens. i started teaching the company's ai to design.</h1>
+    <h1 class="reveal">shipping design ~35% faster by turning a 200+ component design system into an ai skill</h1>
     <p class="sub reveal">digistay runs an internal ai orchestrator — dozens of skills for operations, business rules and integrations. i wrote our design system into it as a skill of its own: 200+ components with priorities, brand rules, tokens, patterns. now anyone can prompt and get on-brand output. and when the fix is small, i don't file a ticket — i open the frontend repo and push the pr myself.</p>
     <span class="livebadge reveal"><span class="dot"></span> skill live in the orchestrator · design brain in progress</span>
     <div class="meta reveal">
@@ -168,21 +174,21 @@
 
 <section id="stakes" class="block col">
   <span class="label reveal">why it matters</span>
-  <p class="big reveal" style="margin-top:16px;">every team asks design the same small questions. which component? what spacing? is this on-brand? the design system knows — but it's a document, and documents don't answer.</p>
-  <p class="reveal soft">the orchestrator already knew the business — booking rules, integrations, cost guards. what it didn't have was taste. anything it helped build could be functional and still look wrong. that gap was mine to close: <span class="mark">if the ai knows the design system, everyone has a designer on call.</span></p>
+  <p class="big reveal" style="margin-top:16px;">every team asks design the same small questions. which component? what spacing? is this on-brand? the answers lived in our design system, but nobody opens a document mid-task. they ask the designer, and they wait.</p>
+  <p class="reveal soft">digistay runs an internal ai orchestrator with skills for operations, business rules and integrations. it knew the business. it didn't know our design standards, so anything it generated looked off-brand. i closed that gap: <span class="mark">if the ai knows the design system, everyone has a designer on call.</span></p>
 </section>
 
 <div class="rule reveal"><span></span></div>
 
 <section id="move" class="block col">
   <span class="label reveal">the move</span>
-  <p class="big reveal" style="margin-top:16px;">i wrote the design system as an agent skill — the same way engineers write business rules.</p>
-  <p class="reveal soft">not a pdf, not a figma page with rules nobody reads on time. a skill in the company repo, versioned, committed, sitting in the orchestrator next to the operational skills. design now lives where the work actually happens.</p>
+  <p class="big reveal" style="margin-top:16px;">i wrote the design system as an agent skill, the same way engineers write business rules.</p>
+  <p class="reveal soft">instead of a pdf or a figma page, the design system became a skill in the company repo: versioned, committed, sitting next to the operational skills. design now lives where the work happens.</p>
 </section>
 
 <div class="repo reveal">
   <div class="card">
-    <div class="bar"><i></i><i></i><i></i><span class="path">digistay-orchestrator / .claude / skills / digistay-design-system</span></div>
+    <div class="bar"><span class="path">digistay-orchestrator / .claude / skills / digistay-design-system</span></div>
     <pre><span class="d">├─</span> assets/
 <span class="d">├─</span> README.md
 <span class="d">├─</span> SKILL.md
@@ -200,7 +206,7 @@
 
 <div class="col">
   <blockquote class="quote reveal">a skill that teaches the ai the digistay design system — so anyone can prompt "build a booking confirmation page" and get on-brand, responsive, accessible output.
-    <span class="who">— the readme, verbatim in spirit, lowercase by portfolio law</span>
+    <span class="who">— from the repo readme</span>
   </blockquote>
 </div>
 
@@ -208,7 +214,7 @@
 
 <section id="inside" class="block col">
   <span class="label reveal">inside the skill</span>
-  <p class="big reveal" style="margin-top:16px;">the hard part wasn't listing components. it was teaching judgment.</p>
+  <p class="big reveal" style="margin-top:16px;">listing components was easy. teaching the ai which one to reach for first was the real work.</p>
   <div class="files reveal">
     <div class="r"><span class="m">brand.md</span><span class="t"><b>the non-negotiables.</b> voice, color, what digistay looks like and refuses to look like. everything the brain produces passes through this.</span></div>
     <div class="r"><span class="m">components.md</span><span class="t"><b>the 200+ list, prioritised.</b> not an inventory — a ranking. the ai reaches for the right component first, not any component that fits.</span></div>
@@ -224,15 +230,15 @@
 
 <section id="repo" class="block col">
   <span class="label reveal">design → dev</span>
-  <p class="big reveal" style="margin-top:16px;">the same fluency runs the other way: when the fix is small, i ship it myself.</p>
-  <p class="reveal soft">copy tweaks, spacing slips, token corrections — the fixes that die in backlogs because a ticket costs more than the change. i make them in the frontend repo and open the pr; engineering reviews and merges. design debt stops accumulating, and the b.tech finally pays rent.</p>
+  <p class="big reveal" style="margin-top:16px;">and when the fix is small, i ship it myself.</p>
+  <p class="reveal soft">copy tweaks, spacing slips, token corrections: fixes that usually die in backlogs because a ticket costs more than the change. i make them in the frontend repo and open the pr. engineering reviews and merges. my b.tech finally earns its keep.</p>
 </section>
 
 <div class="rule reveal"><span></span></div>
 
 <section id="brain" class="block col">
   <span class="label reveal">where this goes · the design brain</span>
-  <p class="big reveal" style="margin-top:16px;">the skill is the first organ. the brain is the plan.</p>
+  <p class="big reveal" style="margin-top:16px;">the skill is step one. the plan is bigger.</p>
   <p class="reveal soft">what i'm building next: an agent with the company's full context — product, users, brand history — that thinks like a senior product designer and a creative head at once. cross-functional teams ask it first: marketing checks a layout, engineering checks a flow, sales mocks a screen for a demo. everything it produces routes through the brand rules before it ships. honestly labeled: <b>in progress</b> — and the parts that exist are already answering questions that used to wait for me.</p>
 </section>
 
@@ -275,7 +281,7 @@
   </div>
 </div>
 
-<footer>© 2026 nitish kumar jha · product designer · the design brain</footer>
+<footer>© 2026 Nitish Kumar Jha · product designer · the design brain</footer>
 
 <script>
   (function(){var b=document.getElementById('progress');
@@ -404,7 +410,7 @@
        r:"hey! you found the guided me — the real one is probably in figma right now. ask me anything about the work, or tap one of these.",
        rh:"नमस्ते! मैं नितीश — product designer। आसान शब्दों में: मैं मुश्किल systems को simple बनाता हूँ। पूछिए, जो भी जानना हो।"},
       {id:'whatdo',k:['what do you do','who are you','about you','about yourself','tell me about yourself','क्या करते','kya karte','कौन हैं','kaun ho','अपने बारे'],
-       r:"i'm a product designer, three-plus years in. i take the complicated middle of fintech and hotel software — permissions, billing, verification — and make it feel obvious. research to handoff, all of it mine.",
+       r:"i'm a product designer, three-plus years in. i've shipped across fintech, hotel saas and consumer apps — permissions, billing, verification, live-event gaming — and my job is making complex products feel simple. research to handoff, all of it mine.",
        rh:"मैं product designer हूँ, 3+ साल से। fintech और hotels के मुश्किल software को आसान बनाता हूँ — research से final design तक, पूरा काम मेरा।"},
       {id:'projects',k:['projects','kaun se project','क्या किए','kya kiye','कौन से'],
        r:"three, these days. the hotel pms at digistay — eight modules, all live, ~30,000 check-ins a month. video kyc at surepass — 2,000+ verified daily. and the newest: i taught digistay's ai orchestrator our design system, as a skill. <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>",
@@ -541,7 +547,7 @@
         var g=(PAGE==='brain')?"hey — nitish here, the guided version. you're on the design brain story — the ai side of my work. ask about it, or anything else i've shipped. हिंदी में भी पूछ सकते हैं।"
          :(PAGE==='kyc')?"hey — nitish here, the guided version. you're on my video kyc case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
          :(PAGE==='pms')?"hey — nitish here, the guided version. you're on my hotel pms case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
-         :"hey — nitish here. well, the guided version; the real one is probably moving a charge to a guest account right now. ask me about the work, how i think, or whether i'm up for a role. हिंदी में भी पूछ सकते हैं — बस लिखिए।";
+         :"hey — nitish here, the guided version of me. ask about my work, my process, or whether i'm open to a role. type or tap a chip — हिंदी में भी पूछ सकते हैं।";
         typing(g);}
       setTimeout(function(){try{input.focus();}catch(e){}},240);}
     if(open)open.addEventListener('click',openChat);
@@ -628,6 +634,12 @@
   @media (max-width:600px){.pill{font-size:12.5px;padding:4px 11px;}}
   .lrow .v{font-family:'Quicksand',var(--sans);font-weight:700;letter-spacing:0;}
   .facts .f .v,.nums .n,.stat .hero-n,.costs .r .val{font-family:'Quicksand',var(--sans);}
+</style>
+<style>
+  /* animation diet — one orchestrated entrance (hero), timeline cascade kept, the rest just is */
+  @media (prefers-reduced-motion: no-preference){
+    section .reveal:not(.steps),figure.reveal,.rule.reveal,.facts.reveal,.ledger.reveal,.flag.reveal,.logrow.reveal,.repo.reveal,.sign .reveal,.close .reveal{opacity:1;transform:none;transition:none;}
+  }
 </style>
 </body>
 </html>

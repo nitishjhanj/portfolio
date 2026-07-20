@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>video kyc — case study · nitish kumar jha</title>
+<meta name="description" content="how an agent-free video kyc flow automates 2,000+ verifications a day across 20+ clients, designed under rbi v-cip rules." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%232557D6'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='26' font-weight='bold' fill='white' text-anchor='middle'%3Enj%3C/text%3E%3C/svg%3E" />
+<meta property="og:title" content="Video KYC Case Study — Nitish Kumar Jha" />
+<meta property="og:description" content="how an agent-free video kyc flow automates 2,000+ verifications a day across 20+ clients, designed under rbi v-cip rules." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<title>Video KYC Case Study — Nitish Kumar Jha</title>
 </head>
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -203,7 +209,7 @@
 <header id="top">
   <div class="col">
     <span class="label reveal">case study · video kyc · surepass</span>
-    <h1 class="reveal">some people need a human to get verified. most just need us to get out of the way.</h1>
+    <h1 class="reveal">automating 2,000+ kyc verifications a day — with a human path for the ones who need it</h1>
     <p class="sub reveal">surepass builds identity infrastructure for banks and fintechs. i designed its video kyc end to end: a live-agent flow for people who need help, and an ai "smart consent" flow that verifies everyone else in about a minute, with no agent at all.</p>
     <span class="livebadge reveal"><span class="dot"></span> live in production, used by real users</span>
     <div class="meta reveal">
@@ -260,8 +266,8 @@
 
 <section id="problem" class="block col">
   <span class="label reveal">the problem</span>
-  <p class="big reveal" style="margin-top:16px;">one flow was doing two jobs. every verification, the easy ones and the hard ones, went through a live agent.</p>
-  <p class="reveal soft">that's fine for someone who's confused. it's a tax on everyone else: queues at peak hours, throughput chained to how many agents are online, and a cost per check that never drops. two very different people were being handed the same slow door.</p>
+  <p class="big reveal" style="margin-top:16px;">every user had to wait for a live agent, even people with clean documents who could finish in a minute.</p>
+  <p class="reveal soft">agents were the bottleneck. queues built up at peak hours, cost per verification never came down, and users dropped off while waiting. one slow flow was serving two very different kinds of people.</p>
   <div class="two" style="margin-top:34px;">
     <div class="b reveal">
       <h3>the self-server</h3>
@@ -274,18 +280,18 @@
       <p>nervous, or holding something the automation trips on. a human lowers the fear and stops a hard dead-end.</p>
     </div>
   </div>
-  <p class="reveal" style="margin-top:32px;">i didn't want to pick a side. i wanted two doors to the same room, and a way to send each person to the right one.</p>
+  <p class="reveal" style="margin-top:32px;">we needed both: an agent flow for people who need help, and a self-serve flow for everyone else.</p>
 </section>
 
 <div class="rule reveal"><span></span></div>
 
 <section id="smart" class="block col">
   <span class="label reveal">the idea · smart consent</span>
-  <p class="big reveal" style="margin-top:16px;">build a path with no agent, and make the trust hold anyway.</p>
+  <p class="big reveal" style="margin-top:16px;">the idea: remove the agent, keep the trust.</p>
   <p class="reveal soft">recorded video consent and ocr handled two of the three things an agent used to guarantee. the hard one was the third: <b>is this a real, live person, here right now?</b></p>
-  <p class="reveal">the answer is simple enough to say in one sentence: the user <b>speaks a one-time code out loud</b>, on camera, while their face is detected. a fresh code you say in real time is something a photo can't fake and a recording can't guess. the agent's core judgment became a step in the flow.</p>
+  <p class="reveal">the fix: the user <b>speaks a one-time code out loud</b>, on camera, while their face is detected. a photo can't speak. a recording can't guess a fresh code. that one check covers what the agent was really there to judge.</p>
   <p class="reveal">one small decision carried the whole thing: <b>the code appears only after the face is aligned in the frame.</b> show it any earlier and people read it out from anywhere, face out of frame, or someone else's voice entirely. gate it on the face, and the moment of speaking is exactly the moment the camera needs. when the user stops speaking, transcription and matching run on their own.</p>
-  <p class="reveal soft">and because a verification you can retry forever isn't a verification, attempts are limited. the exact count is admin-configurable, and before the final try the flow says so in plain words: <em>this is your last attempt.</em> the flow itself flexes too, two steps or three depending on the client's config, with everything mirroring live to their admin portal.</p>
+  <p class="reveal soft">retries are limited and admin-configurable, and before the final try the flow warns the user in plain words: this is your last attempt. the flow itself flexes too, two steps or three depending on the client's config, with everything mirroring live to their admin portal.</p>
 </section>
 
 <figure class="fig reveal">
@@ -306,7 +312,7 @@
 
 <section id="agent" class="block col">
   <span class="label reveal">the other door · agent-led</span>
-  <p class="big reveal" style="margin-top:16px;">for everyone the automation can't clear, the human is still there. just faster.</p>
+  <p class="big reveal" style="margin-top:16px;">for everyone else, the agent flow stays, redesigned to make reviews fast and consistent.</p>
   <p class="reveal soft">same visual language as the self-serve path, so being routed to an agent never feels like a downgrade. the screen is built to make one person's judgment quick and consistent.</p>
 </section>
 
@@ -364,7 +370,7 @@
 <section id="edge" class="block col">
   <span class="label reveal">when it doesn't go smoothly</span>
   <p class="big reveal" style="margin-top:16px;">real verification is mostly edge cases. a connection drops. every agent is busy. someone taps away mid-session.</p>
-  <p class="reveal soft">in kyc, a user who falls out of the flow is usually a lost customer. so the unhappy path got as much attention as the happy one. the rule was simple: <span class="mark">never dead-end a user.</span> always leave a door open.</p>
+  <p class="reveal soft">in kyc, a user who drops out is usually a lost customer. so every failure state needed a way forward: <span class="mark">never dead-end a user.</span></p>
 </section>
 
 <figure class="fig reveal">
@@ -384,8 +390,8 @@
 
 <section id="live" class="block col">
   <span class="label reveal">see it running</span>
-  <p class="big reveal" style="margin-top:16px;">this isn't a concept deck. it's shipped, and people use it.</p>
-  <p class="reveal soft">both flows run in production at surepass. here's a screen recording of the real thing, and screens captured from live sessions, browser bar and all.</p>
+  <p class="big reveal" style="margin-top:16px;">both flows run in production at surepass today.</p>
+  <p class="reveal soft">here's a screen recording of the real system, plus screens captured from live sessions, browser bar and all.</p>
 </section>
 
 <figure class="fig reveal">
@@ -402,7 +408,7 @@
 
 <section class="block col">
   <span class="label reveal">how the two connect</span>
-  <p class="reveal" style="margin-top:16px;">nobody picks a "kyc type" they don't understand. everyone starts on the fast path; the moment it can't be sure, a failed check, a missing agent, a dropped call, it routes to a human or a scheduled slot, no restart. <b>the self-server never meets a queue. the guided user never hits a wall.</b></p>
+  <p class="reveal" style="margin-top:16px;">users never pick a "kyc type". everyone starts on the fast path, and only meets an agent when a check fails or they ask for help. no restart, no dead end.</p>
   <div class="aside" style="margin-top:32px;">
     <span class="label">and the ai, in two places</span>
     <div class="row" style="margin-top:14px;"><b>in the product</b> — face detection gates the flow, voice otp proves liveness, ocr reads the documents. together they do the checking an agent once did by eye.</div>
@@ -451,7 +457,7 @@
   </div>
 </div>
 
-<footer>© 2026 nitish kumar jha · product designer · video kyc case study</footer>
+<footer>© 2026 Nitish Kumar Jha · product designer · video kyc case study</footer>
 
 <script>
   (function(){var b=document.getElementById('progress');
@@ -576,7 +582,7 @@
        r:"hey! you found the guided me — the real one is probably in figma right now. ask me anything about the work, or tap one of these.",
        rh:"नमस्ते! मैं नितीश — product designer। आसान शब्दों में: मैं मुश्किल systems को simple बनाता हूँ। पूछिए, जो भी जानना हो।"},
       {id:'whatdo',k:['what do you do','who are you','about you','about yourself','tell me about yourself','क्या करते','kya karte','कौन हैं','kaun ho','अपने बारे'],
-       r:"i'm a product designer, three-plus years in. i take the complicated middle of fintech and hotel software — permissions, billing, verification — and make it feel obvious. research to handoff, all of it mine.",
+       r:"i'm a product designer, three-plus years in. i've shipped across fintech, hotel saas and consumer apps — permissions, billing, verification, live-event gaming — and my job is making complex products feel simple. research to handoff, all of it mine.",
        rh:"मैं product designer हूँ, 3+ साल से। fintech और hotels के मुश्किल software को आसान बनाता हूँ — research से final design तक, पूरा काम मेरा।"},
       {id:'projects',k:['projects','kaun se project','क्या किए','kya kiye','कौन से'],
        r:"three, these days. the hotel pms at digistay — eight modules, all live, ~30,000 check-ins a month. video kyc at surepass — 2,000+ verified daily. and the newest: i taught digistay's ai orchestrator our design system, as a skill. <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>",
@@ -712,7 +718,7 @@
       if(!started){started=true;
         var g=(PAGE==='kyc')?"hey — nitish here, the guided version. you're on my video kyc case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
          :(PAGE==='pms')?"hey — nitish here, the guided version. you're on my hotel pms case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
-         :"hey — nitish here. well, the guided version; the real one is probably moving a charge to a guest account right now. ask me about the work, how i think, or whether i'm up for a role. हिंदी में भी पूछ सकते हैं — बस लिखिए।";
+         :"hey — nitish here, the guided version of me. ask about my work, my process, or whether i'm open to a role. type or tap a chip — हिंदी में भी पूछ सकते हैं।";
         typing(g);}
       setTimeout(function(){try{input.focus();}catch(e){}},240);}
     if(open)open.addEventListener('click',openChat);
@@ -799,6 +805,12 @@
   @media (max-width:600px){.pill{font-size:12.5px;padding:4px 11px;}}
   .lrow .v{font-family:'Quicksand',var(--sans);font-weight:700;letter-spacing:0;}
   .facts .f .v,.nums .n,.stat .hero-n,.costs .r .val{font-family:'Quicksand',var(--sans);}
+</style>
+<style>
+  /* animation diet — one orchestrated entrance (hero), timeline cascade kept, the rest just is */
+  @media (prefers-reduced-motion: no-preference){
+    section .reveal:not(.steps),figure.reveal,.rule.reveal,.facts.reveal,.ledger.reveal,.flag.reveal,.logrow.reveal,.repo.reveal,.sign .reveal,.close .reveal{opacity:1;transform:none;transition:none;}
+  }
 </style>
 </body>
 </html>
