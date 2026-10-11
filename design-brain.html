@@ -407,19 +407,19 @@
     }
     var INTENTS=[
       {id:'hello',k:['hello','hi ','hey','namaste','नमस्ते','hii','hola'],
-       r:"hey! you found the guided me — the real one is probably in figma right now. ask me anything about the work, or tap one of these.",
+       r:"hey! you found the short version of me — the real one is probably in figma right now. ask me anything about the work, or tap one of these.",
        rh:"नमस्ते! मैं नितीश — product designer। आसान शब्दों में: मैं मुश्किल systems को simple बनाता हूँ। पूछिए, जो भी जानना हो।"},
       {id:'whatdo',k:['what do you do','who are you','about you','about yourself','tell me about yourself','क्या करते','kya karte','कौन हैं','kaun ho','अपने बारे'],
        r:"i'm a product designer, three-plus years in. i've shipped across fintech, hotel saas and consumer apps — permissions, billing, verification, live-event gaming — and my job is making complex products feel simple. research to handoff, all of it mine.",
        rh:"मैं product designer हूँ, 3+ साल से। fintech और hotels के मुश्किल software को आसान बनाता हूँ — research से final design तक, पूरा काम मेरा।"},
       {id:'projects',k:['projects','kaun se project','क्या किए','kya kiye','कौन से'],
-       r:"three, these days. the hotel pms at digistay — eight modules, all live, ~30,000 check-ins a month. video kyc at surepass — 2,000+ verified daily. and the newest: i taught digistay's ai orchestrator our design system, as a skill. <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>",
-       rh:"अब तीन। digistay का hotel pms — 8 modules, सब live, हर महीने ~30,000 check-ins। surepass का video kyc — रोज़ 2,000+ verifications। और सबसे नया: digistay के ai को design system सिखाया, skill बनाकर। <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>"},
+       r:"three, these days. the hotel pms at digistay — eight modules, all live, ~30,000 check-ins a month. video kyc at surepass — 2,000+ verified daily. and the newest: one design system every team at digistay builds from — 200+ components, ~35% faster to ship. <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>",
+       rh:"अब तीन। digistay का hotel pms — 8 modules, सब live, हर महीने ~30,000 check-ins। surepass का video kyc — रोज़ 2,000+ verifications। और सबसे नया: एक design system जिससे digistay की हर team बनाती है — 200+ components, ~35% तेज़। <a href='"+PMS+"'>hotel pms →</a> · <a href='"+KYC+"'>video kyc →</a> · <a href='"+BRAIN+"'>design brain →</a>"},
       {id:'proud',k:['proud','best work','favourite','favorite','highlight'],
        r:"honestly? two things. the voice otp idea in kyc — a photo can't speak a fresh code. and the ₹0.00 line in the hotel pms — a waived charge stays visible, so generosity shows and leakage can't hide.",
        rh:"सच बोलूँ तो दो चीज़ें। kyc का voice otp — photo code बोल नहीं सकती। और hotel pms की ₹0.00 line — माफ किया charge भी दिखता है, चुपचाप कुछ leak नहीं होता।"},
       {id:'kyc',k:['kyc','surepass','verification','identity','smart consent','video'],
-       r:"at surepass i designed video kyc both ways: an agent-led flow for people who need a human, and smart consent where ai does the judging — your face gates the flow, then you speak a one-time code aloud. 20+ clients, 2,000+ verifications a day."+(PAGE!=='kyc'?" <a href='"+KYC+"'>full story →</a>":""),
+       r:"at surepass i designed video kyc both ways: an agent-led flow for people who need a human, and smart consent, agent-free — your face gates the flow, then you speak a one-time code aloud. 20+ clients, 2,000+ verifications a day."+(PAGE!=='kyc'?" <a href='"+KYC+"'>full story →</a>":""),
        rh:"surepass में video kyc दो तरह का: agent के साथ, और smart consent — बिना agent। चेहरा frame में आए तभी otp दिखता है, और आप code बोल के verify होते हैं। 20+ clients, रोज़ 2,000+ verifications।"+(PAGE!=='kyc'?" <a href='"+KYC+"'>पूरी कहानी →</a>":"")},
       {id:'votp',k:['voice otp','otp','liveness','spoof','face detect'],
        r:"the trick is the order: the code appears only after your face is aligned. show it earlier and people read it from anywhere. a recording can't guess a fresh code; a photo can't speak.",
@@ -439,12 +439,12 @@
       {id:'process',k:['process','how do you work','approach','method','कैसे काम'],
        r:"who touches the system before what it looks like — roles, permissions, the money trail. then flows, ui, handoff. and 15–20 user interviews every month, no exceptions.",
        rh:"पहले ये कि use कौन करेगा, फिर flows, फिर design, फिर handoff। और हर महीने 15–20 users से बात — बिना नागा।"},
-      {id:'research',k:['research','interview','mixpanel','user testing','data'],
+      {id:'research',k:['research','interview','mixpanel','user testing','data','how do you know','measured','prove','is that number real'],
        r:"15–20 interviews a month against 500 active users, mixpanel for behaviour, the company mis for operations. when i quote a number, it's measured — not estimated.",
        rh:"हर महीने 15–20 interviews, 500 active users। behaviour के लिए mixpanel, operations के लिए mis। मेरा हर number नापा हुआ है।"},
       {id:'tools',k:['tool','figma','claude','lovable','gemini','chatgpt','stack','your skills','skills'],
-       r:"figma and framer for craft. claude and chatgpt for flow logic and microcopy, lovable for prototypes, gemini and ux pilot for audits. a third of my time back, spent on judgment calls.",
-       rh:"figma, framer — और speed के लिए ai: claude, chatgpt, lovable, gemini। एक तिहाई time बचता है, जो सोचने में लगता है।"},
+       r:"figma and framer for craft, a 200+ component system so nothing gets redrawn twice, and enough frontend to push my own prs. a third of my time back, spent on judgment calls.",
+       rh:"figma, framer — और 200+ components का अपना system, ताकि एक चीज़ दोबारा न बने। एक तिहाई time बचता है, जो सोचने में लगता है।"},
       {id:'hire',k:['hire','open to','job','role','available','opportunity','join','naukri','काम के लिए','b2c','consumer'],
        r:"yes — actively, and i'm not fussy about the label. i've gone deep in fintech and b2b saas, and i'm genuinely keen on b2c too — new domains are how i learn fastest. if the problem is interesting, i'm interested. write to "+MAIL+" — i reply fast.",
        rh:"हाँ, बिल्कुल — और मैं किसी एक डब्बे में बंद नहीं हूँ। fintech और b2b में गहरा काम किया है, पर b2c में भी उतना ही interest है — नए domain से ही सबसे तेज़ सीखता हूँ। problem interesting हो तो मैं ready हूँ। email: "+MAIL},
@@ -454,7 +454,7 @@
       {id:'contact',k:['contact','email','reach','phone','talk','संपर्क','linkedin','profile','प्रोफाइल','social'],
        r:"easiest: "+MAIL+", linkedin (<a target='_blank' rel='noopener' href='"+LI+"'>profile</a>), or +91 70043 38374. tell me what you're building.",
        rh:"सबसे आसान: "+MAIL+", या +91 70043 38374। बताइए क्या बना रहे हैं।"},
-      {id:'work',k:['work','case','portfolio','show me','काम दिखा'],
+      {id:'work',k:['work','case','portfolio','show me','shipped','what have you built','काम दिखा'],
        r:"the hotel pms at digistay (<a href='"+PMS+"'>case study</a>), video kyc at surepass (<a href='"+KYC+"'>case study</a>), the design brain (<a href='"+BRAIN+"'>story</a>), and league play at frolic (<a href='"+FRO+"'>case study</a>).",
        rh:"digistay का hotel pms (<a href='"+PMS+"'>case study</a>), surepass का video kyc (<a href='"+KYC+"'>case study</a>), design brain (<a href='"+BRAIN+"'>कहानी</a>), और frolic का league play (<a href='"+FRO+"'>case study</a>)।"},
       {id:'exp',k:['experience','years of','how long','how many years','कितने साल','kitne saal'],
@@ -466,7 +466,7 @@
       {id:'history',k:['career','journey','work history','timeline','background','companies','सफर'],
        r:"the whole road: 2022–23, reliance fynd — owned the frolic app ui, 20+ usability fixes shipped. 2023–24, freelance — three clients, three industries, brand to build. 2024–25, surepass — video kyc, 2,000+ daily verifications. december 2025 to now, digistay — eight pms modules, all live.",
        rh:"पूरा सफर: 2022–23 reliance fynd — frolic app ui। 2023–24 freelance — तीन clients, तीन industries। 2024–25 surepass — video kyc, रोज़ 2,000+ verifications। dec 2025 से digistay — 8 modules, सब live।"},
-      {id:'edu',k:['education','degree','college','b.tech','btech','university','graduate','cgpa','पढ़ाई','studied','where did you study'],
+      {id:'edu',k:['education','degree','college','b tech','btech','university','graduate','cgpa','पढ़ाई','studied','where did you study'],
        r:"b.tech in computer science, 2019–2023 (rgpv), 9.04 cgpa. the engineering background is why i'm comfortable inside the frontend repo — i push minor prs myself instead of filing tickets.",
        rh:"b.tech computer science, 2019–2023 (rgpv), 9.04 cgpa। engineering background की वजह से frontend repo में भी comfortable हूँ — छोटे बदलाव खुद pr करके भेज देता हूँ।"},
       {id:'fynd',k:['fynd','frolic','reliance','intern','gaming app','fan11'],
@@ -478,9 +478,9 @@
       {id:'strength',k:['strength','strengths','weakness','weaknesses','why should we hire','why you','why hire'],
        r:"strength: the complicated middle — permissions, billing, verification — i make it feel obvious, and i ship against evidence, not opinions. honest weakness: i over-obsess edge cases; timeboxing keeps that useful instead of endless. why me? 30,000 check-ins and 2,000 verifications a day already trust my screens.",
        rh:"strength: मुश्किल systems को simple बनाना, और अंदाज़े से नहीं — सबूत से design करना। सच वाली कमज़ोरी: edge cases पर ज़रूरत से ज़्यादा सोचता हूँ; timebox करके काबू में रखता हूँ। hire क्यों? मेरी screens पर रोज़ 30,000 check-ins और 2,000 verifications चलते हैं।"},
-      {id:'brain',k:['design brain','orchestrator','agent skill','design system skill','github','claude skill','pull request',' pr ','frontend repo'],
-       r:"my newest thing: i wrote digistay's design system into the company's ai orchestrator as a skill — 200+ components with priorities, brand rules, tokens — so anyone can prompt and get on-brand output. small frontend fixes i pr myself. next: a full design brain with company context. <a href='"+BRAIN+"'>the story →</a>",
-       rh:"मेरा सबसे नया काम: digistay के ai orchestrator में design system को skill बनाकर डाला — 200+ components priorities के साथ, brand rules, tokens — कोई भी prompt करे, on-brand output मिले। छोटे frontend बदलाव खुद pr करता हूँ। आगे: पूरा design brain। <a href='"+BRAIN+"'>पूरी कहानी →</a>"},
+      {id:'brain',k:['design system','component library','design tokens','github','handoff','pull request',' pr ','frontend repo','single source'],
+       r:"my newest thing: i turned digistay's design system into the single source every team builds from — 200+ components with priorities, brand rules, tokens — so on-brand screens stop waiting on design. ~35% faster to handoff. small frontend fixes i pr myself. <a href='"+BRAIN+"'>the story →</a>",
+       rh:"मेरा सबसे नया काम: digistay के design system को हर team का single source बनाया — 200+ components, brand rules, tokens — अब on-brand screens design का इंतज़ार नहीं करतीं। handoff ~35% तेज़। छोटे frontend बदलाव खुद pr करता हूँ। <a href='"+BRAIN+"'>पूरी कहानी →</a>"},
       {id:'thanks',k:['thank','thanks','shukriya','धन्यवाद','great','nice','awesome','cool'],
        r:"glad it landed. anything else — the work, the process, or a role you have in mind?",
        rh:"अच्छा लगा! और कुछ पूछना हो — काम, process, या कोई role — बताइए।"},
@@ -488,14 +488,14 @@
        r:"thanks for stopping by. if anything stuck with you, "+MAIL+" is the fastest way to continue this.",
        rh:"आने के लिए शुक्रिया! कुछ भी हो तो "+MAIL+" पर लिखिए।"},
       {id:'botq',k:['are you real','are you a bot','are you ai','chatbot','who made','robot'],
-       r:"fair question. i'm a guided script nitish wrote himself — not a live ai, and nothing you type leaves this page. the real nitish reads email though: "+MAIL,
-       rh:"सही सवाल। मैं nitish का लिखा हुआ guided script हूँ — live ai नहीं, और आपकी बात इस page से बाहर नहीं जाती। असली nitish को email कीजिए: "+MAIL},
+       r:"fair question. i'm a script nitish wrote himself — nothing you type leaves this page, and there is no model behind it. the real nitish reads email though: "+MAIL,
+       rh:"सही सवाल। मैं nitish का लिखा हुआ script हूँ — आपकी बात इस page से बाहर नहीं जाती, पीछे कोई model नहीं है। असली nitish को email कीजिए: "+MAIL},
       {id:'help',k:['help','what can you','how does this work','options'],
        r:"i can talk about nitish's projects (hotel pms, video kyc), how he designs, his research habits, tools, and whether he's open to work. in english or हिंदी — the toggle is up top. anything past that: "+MAIL,
        rh:"मैं nitish के projects (hotel pms, video kyc), उसका design तरीका, research, tools, और availability बता सकता हूँ। english या हिंदी — toggle ऊपर है। इससे आगे: "+MAIL}
     ];
     var RUDE=['fuck','shit','bitch','bastard','chutiya','bsdk','madarchod','bhenchod',' mc ',' bc '];
-    var SENS=['salary','ctc','package','notice period','married','age','religion','caste','girlfriend','personal'];
+    var SENS=['salary','ctc','package','notice period','married',' age ','religion','caste','girlfriend','personal'];
     function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
     var lastPick={};
     function pick(key,arr){var i=Math.floor(Math.random()*arr.length);if(arr.length>1&&lastPick[key]===i)i=(i+1)%arr.length;lastPick[key]=i;return arr[i];}
@@ -528,7 +528,7 @@
         t=String(t||'').replace(/\s+/g,' ').trim().slice(0,300);
         if(!t){typing(lang==='hi'?"कुछ तो पूछिए :) — projects, process, या hiring?":"ask me something :) — projects, process, or hiring?");return;}
         if(detectHi(t)&&lang!=='hi')setLang('hi');
-        var q=' '+t.toLowerCase()+' ';
+        var q=' '+t.toLowerCase().replace(/[^0-9a-z\u0900-\u097F\u20B9]+/g,' ').trim()+' ';
         for(var i=0;i<RUDE.length;i++){if(q.indexOf(RUDE[i])!==-1){
           typing(pick('rude',lang==='hi'?RUDE_HI:RUDE_EN));return;}}
         for(var j=0;j<SENS.length;j++){if(q.indexOf(SENS[j])!==-1){
@@ -544,10 +544,10 @@
     function send(t){me(t);input.value='';if(busy){if(queue.length<4)queue.push(t);}else{respond(t);}}
     function openChat(){document.body.classList.add('chat-open');
       if(!started){started=true;
-        var g=(PAGE==='brain')?"hey — nitish here, the guided version. you're on the design brain story — the ai side of my work. ask about it, or anything else i've shipped. हिंदी में भी पूछ सकते हैं।"
-         :(PAGE==='kyc')?"hey — nitish here, the guided version. you're on my video kyc case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
-         :(PAGE==='pms')?"hey — nitish here, the guided version. you're on my hotel pms case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
-         :"hey — nitish here, the guided version of me. ask about my work, my process, or whether i'm open to a role. type or tap a chip — हिंदी में भी पूछ सकते हैं।";
+        var g=(PAGE==='brain')?"hey — nitish here, the short version. you're on the design system story — how one library made handoff ~35% faster. ask about it, or anything else i've shipped. हिंदी में भी पूछ सकते हैं।"
+         :(PAGE==='kyc')?"hey — nitish here, the short version. you're on my video kyc case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
+         :(PAGE==='pms')?"hey — nitish here, the short version. you're on my hotel pms case study; ask me anything about it, or about the rest of my work. हिंदी में भी पूछ सकते हैं।"
+         :"hey — nitish here, the short version. ask about the work, the numbers behind it, or whether i'm open to a role. हिंदी में भी पूछ सकते हैं।";
         typing(g);}
       setTimeout(function(){try{input.focus();}catch(e){}},240);}
     if(open)open.addEventListener('click',openChat);
@@ -640,6 +640,109 @@
   @media (prefers-reduced-motion: no-preference){
     section .reveal:not(.steps),figure.reveal,.rule.reveal,.facts.reveal,.ledger.reveal,.flag.reveal,.logrow.reveal,.repo.reveal,.sign .reveal,.close .reveal{opacity:1;transform:none;transition:none;}
   }
+</style>
+
+<!-- ══ nj 2026 design system — merriweather / green + orange. overrides the page's original tokens. ══ -->
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Merriweather+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FAFAF8;--panel:#FFFFFF;--panel-2:#F4F4F0;
+    --ink:#14161A;--ink-soft:#565C64;--ink-faint:#8B9199;
+    --line:#E2E2DC;--line-soft:#EDEDE7;--line-2:#CFCFC6;
+    --green:#0FA958;--neon:#C6F600;--orange:#F0590B;--on-neon:#14161A;
+    --accent:#F0590B;--accent-soft:rgba(240,89,11,.10);
+    --pos:#0FA958;--neg:#F0590B;--warm:#565C64;--warm-soft:rgba(86,92,100,.1);--steel:#565C64;
+    --shadow:0 1px 2px rgba(20,22,26,.04),0 18px 40px -28px rgba(20,22,26,.2);
+    --serif:'Merriweather',Georgia,'Times New Roman',serif;
+    --sans:'Merriweather Sans',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:'Merriweather Sans',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  :root.njdark{
+    --paper:#111316;--panel:#171A1E;--panel-2:#1C2025;
+    --ink:#F3F3EF;--ink-soft:#A3A9B1;--ink-faint:#737A83;
+    --line:#282C32;--line-soft:#1F2329;--line-2:#3A3F47;
+    --green:#3BD67F;--orange:#FF7A33;--accent:#FF7A33;--accent-soft:rgba(255,122,51,.14);
+    --pos:#3BD67F;--neg:#FF7A33;--warm:#A3A9B1;--steel:#A3A9B1;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 40px -28px rgba(0,0,0,.7);
+  }
+
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7;}
+  ::selection{background:var(--neon);color:var(--on-neon);}
+  h1,h2,h3,h4,h5,.big,.close .q{font-family:var(--serif) !important;letter-spacing:-.022em;font-weight:700;}
+  h1{font-weight:900;}
+  mark{background:var(--neon);color:var(--on-neon);padding:0 .12em;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
+
+  /* panels that were hardcoded white in the original */
+  .facts,.frame,.ledger,.sign,.flag,.skill-card,.how .c,.repo,.chat-top,.chat-form,.msg.bot,.typing{background:var(--panel) !important;}
+  .lang,.chat-chips button,.chat-form input{background:var(--paper) !important;}
+  .pill,.badge,.livebadge{background:transparent !important;}
+
+  /* sticky nav, matched to the homepage */
+  .top{background:var(--paper);border-bottom:1px solid var(--line);backdrop-filter:none;}
+  .back{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);}
+  .back:hover{color:var(--orange);}
+  .idx a{font-family:var(--sans);font-size:13px;color:var(--ink-soft);}
+  .idx a:hover{color:var(--orange);}
+  .lang{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);border:1px solid var(--line-2);padding:6px 9px;border-radius:999px;}
+  .lang:hover{border-color:var(--orange);color:var(--orange);}
+  button#njTheme{width:32px;height:32px;display:grid;place-items:center;padding:0;border-radius:50%;}
+
+  /* eyebrow labels + status pills */
+  .label,.lbl,.hello,.hi{font-family:var(--sans) !important;font-size:11px !important;font-weight:600 !important;
+    letter-spacing:.14em !important;text-transform:uppercase;color:var(--ink-faint) !important;}
+  .pill,.badge,.livebadge{font-family:var(--sans) !important;font-size:11px !important;font-weight:600 !important;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink) !important;
+    border:1px solid var(--neon) !important;padding:4px 11px !important;border-radius:999px !important;}
+  .pill .dot,.livebadge .dot,.badge .dot{background:var(--green) !important;}
+
+  /* numbers read as serif figures, units in orange — same language as the homepage stat cells */
+  .facts .f .v,.nums .n,.stat .hero-n,.costs .r .val,.lrow .v,.v{font-family:var(--serif) !important;font-weight:300;letter-spacing:-.03em;}
+  .lrow .v .u,.f .v .u,.n .u{color:var(--orange) !important;}
+  figcaption,.cap{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);}
+
+  /* buttons */
+  .btn{font-family:var(--sans);font-size:13.5px;font-weight:600;letter-spacing:0;text-transform:none;
+    padding:13px 19px;border:1px solid var(--line-2);color:var(--ink);background:var(--panel);border-radius:0;
+    transition:background .18s,border-color .18s,color .18s,transform .18s;}
+  .btn:hover{transform:translateY(-1px);border-color:var(--orange);color:var(--orange);}
+  .btn-p{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+  .btn-p:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+  .btn-g{background:var(--panel);}
+
+  /* figures: hairline frames rather than soft cards */
+  .frame,.fig{border:1px solid var(--line) !important;border-radius:0 !important;box-shadow:none !important;}
+  .flag,.skill-card,.how .c,.repo{border-radius:0 !important;box-shadow:none !important;border:1px solid var(--line) !important;}
+
+  /* chat, matched to the homepage panel */
+  .chat-fab{border:1px solid var(--line-2);border-radius:50%;background:var(--panel);box-shadow:0 10px 28px -10px rgba(20,22,26,.3);}
+  .chat-fab:hover{border-color:var(--orange);}
+  .chat-fab .dot{background:var(--green) !important;border-color:var(--panel) !important;}
+  .chat-panel{background:var(--paper);border:1px solid var(--line-2);border-radius:0;box-shadow:0 30px 70px -22px rgba(20,22,26,.4);}
+  .chat-top,.chat-form{border-color:var(--line);}
+  .chat-top .n,.chat-top .nswap{font-family:var(--serif);font-size:14.5px;font-weight:700;}
+  .chat-top .s{font-family:var(--sans);font-size:11px;color:var(--ink-faint);}
+  .msg{font-family:var(--sans);font-size:14px;border-radius:14px;}
+  .msg.bot{border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px;}
+  .msg.me{background:var(--ink) !important;color:var(--paper) !important;border-bottom-right-radius:4px;}
+  .msg a{color:var(--orange);}
+  .msg.me a{color:var(--paper);}
+  .typing{border:1px solid var(--line);border-radius:14px;border-bottom-left-radius:4px;}
+  .typing i{border-radius:50%;background:var(--ink-faint);}
+  .chat-chips button{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);border:1px solid var(--line-2);border-radius:999px;}
+  .chat-chips button:hover{border-color:var(--orange);color:var(--orange);}
+  .chat-form input{border:1px solid var(--line-2);color:var(--ink);font-family:var(--sans);font-size:13.5px;border-radius:999px;}
+  .chat-form input:focus{border-color:var(--orange);}
+  .chat-form button[type="submit"]{background:var(--ink);border:1px solid var(--ink);color:var(--paper);border-radius:50%;}
+  .chat-form button[type="submit"]:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+
+  /* route overlay */
+  .njload{background:var(--paper);font-family:var(--sans);}
+  .njload .t{font-size:13px;color:var(--ink-soft);}
+  .njload .ring{border-color:var(--line);border-top-color:var(--green);}
+  .njload .bar::after{background:var(--green);}
+
+  footer{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);}
 </style>
 </body>
 </html>
