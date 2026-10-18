@@ -824,118 +824,6 @@
   }
 </style>
 
-<!-- ══ nj 2026 design system — merriweather / green + orange. overrides the page's original tokens. ══ -->
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Merriweather+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --paper:#FAFAF8;--panel:#FFFFFF;--panel-2:#F4F4F0;
-    --ink:#14161A;--ink-soft:#565C64;--ink-faint:#8B9199;
-    --line:#E2E2DC;--line-soft:#EDEDE7;--line-2:#CFCFC6;
-    --green:#0FA958;--neon:#C6F600;--orange:#F0590B;--on-neon:#14161A;
-    --accent:#F0590B;--accent-soft:rgba(240,89,11,.10);
-    --pos:#0FA958;--neg:#F0590B;--warm:#565C64;--warm-soft:rgba(86,92,100,.1);--steel:#565C64;
-    --shadow:0 1px 2px rgba(20,22,26,.04),0 18px 40px -28px rgba(20,22,26,.2);
-    --serif:'Merriweather',Georgia,'Times New Roman',serif;
-    --sans:'Merriweather Sans',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --mono:'Merriweather Sans',ui-monospace,SFMono-Regular,Menlo,monospace;
-  }
-  :root.njdark{
-    --paper:#111316;--panel:#171A1E;--panel-2:#1C2025;
-    --ink:#F3F3EF;--ink-soft:#A3A9B1;--ink-faint:#737A83;
-    --line:#282C32;--line-soft:#1F2329;--line-2:#3A3F47;
-    --green:#3BD67F;--orange:#FF7A33;--accent:#FF7A33;--accent-soft:rgba(255,122,51,.14);
-    --pos:#3BD67F;--neg:#FF7A33;--warm:#A3A9B1;--steel:#A3A9B1;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 40px -28px rgba(0,0,0,.7);
-  }
-
-  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7;}
-  ::selection{background:var(--neon);color:var(--on-neon);}
-  h1,h2,h3,h4,h5,.big,.close .q{font-family:var(--serif) !important;letter-spacing:-.022em;font-weight:700;}
-  h1{font-weight:900;}
-  /* merriweather sets much wider than the original nunito, so the inherited sizes
-     need pulling in and the hero column needs more room */
-  header .col{max-width:880px;}
-  h1{font-size:clamp(27px,3.9vw,44px) !important;line-height:1.18 !important;}
-  .sub{font-size:clamp(15.5px,1.8vw,18px) !important;line-height:1.62 !important;max-width:60ch;}
-  .big{font-size:clamp(18px,2.2vw,25px) !important;line-height:1.38 !important;}
-  .close .q{font-size:clamp(19px,2.4vw,28px) !important;line-height:1.32 !important;}
-  h2{font-size:clamp(21px,2.7vw,30px) !important;}
-  h3{font-size:clamp(17px,2vw,21px) !important;}
-  mark{background:var(--neon);color:var(--on-neon);padding:0 .12em;}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
-
-  /* panels that were hardcoded white in the original */
-  .facts,.frame,.ledger,.sign,.flag,.skill-card,.how .c,.repo,.chat-top,.chat-form,.msg.bot,.typing{background:var(--panel) !important;}
-  .lang,.chat-chips button,.chat-form input{background:var(--paper) !important;}
-  .pill,.badge,.livebadge{background:transparent !important;}
-
-  /* sticky nav, matched to the homepage */
-  .top{background:var(--paper);border-bottom:1px solid var(--line);backdrop-filter:none;}
-  .back{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);}
-  .back:hover{color:var(--orange);}
-  .idx a{font-family:var(--sans);font-size:13px;color:var(--ink-soft);}
-  .idx a:hover{color:var(--orange);}
-  .lang{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);border:1px solid var(--line-2);padding:6px 9px;border-radius:999px;}
-  .lang:hover{border-color:var(--orange);color:var(--orange);}
-  button#njTheme{width:32px;height:32px;display:grid;place-items:center;padding:0;border-radius:50%;}
-
-  /* eyebrow labels + status pills */
-  .label,.lbl,.hello,.hi{font-family:var(--sans) !important;font-size:11px !important;font-weight:600 !important;
-    letter-spacing:.14em !important;text-transform:uppercase;color:var(--ink-faint) !important;}
-  .pill,.badge,.livebadge{font-family:var(--sans) !important;font-size:11px !important;font-weight:600 !important;
-    letter-spacing:.1em;text-transform:uppercase;color:var(--ink) !important;
-    border:1px solid var(--neon) !important;padding:4px 11px !important;border-radius:999px !important;}
-  .pill .dot,.livebadge .dot,.badge .dot{background:var(--green) !important;}
-
-  /* numbers read as serif figures, units in orange — same language as the homepage stat cells */
-  .facts .f .v,.nums .n,.stat .hero-n,.costs .r .val,.lrow .v,.v{font-family:var(--serif) !important;font-weight:300;letter-spacing:-.03em;}
-  .lrow .v .u,.f .v .u,.n .u{color:var(--orange) !important;}
-  figcaption,.cap{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);}
-
-  /* buttons */
-  .btn{font-family:var(--sans);font-size:13.5px;font-weight:600;letter-spacing:0;text-transform:none;
-    padding:13px 19px;border:1px solid var(--line-2);color:var(--ink);background:var(--panel);border-radius:0;
-    transition:background .18s,border-color .18s,color .18s,transform .18s;}
-  .btn:hover{transform:translateY(-1px);border-color:var(--orange);color:var(--orange);}
-  .btn-p{background:var(--ink);border-color:var(--ink);color:var(--paper);}
-  .btn-p:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
-  .btn-g{background:var(--panel);}
-
-  /* figures: hairline frames rather than soft cards */
-  .frame,.fig{border:1px solid var(--line) !important;border-radius:0 !important;box-shadow:none !important;}
-  .flag,.skill-card,.how .c,.repo{border-radius:0 !important;box-shadow:none !important;border:1px solid var(--line) !important;}
-
-  /* chat, matched to the homepage panel */
-  .chat-fab{border:1px solid var(--line-2);border-radius:50%;background:var(--panel);box-shadow:0 10px 28px -10px rgba(20,22,26,.3);}
-  .chat-fab:hover{border-color:var(--orange);}
-  .chat-fab .dot{background:var(--green) !important;border-color:var(--panel) !important;}
-  .chat-panel{background:var(--paper);border:1px solid var(--line-2);border-radius:0;box-shadow:0 30px 70px -22px rgba(20,22,26,.4);}
-  .chat-top,.chat-form{border-color:var(--line);}
-  .chat-top .n,.chat-top .nswap{font-family:var(--serif);font-size:14.5px;font-weight:700;}
-  .chat-top .s{font-family:var(--sans);font-size:11px;color:var(--ink-faint);}
-  .msg{font-family:var(--sans);font-size:14px;border-radius:14px;}
-  .msg.bot{border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px;}
-  .msg.me{background:var(--ink) !important;color:var(--paper) !important;border-bottom-right-radius:4px;}
-  .msg a{color:var(--orange);}
-  .msg.me a{color:var(--paper);}
-  .typing{border:1px solid var(--line);border-radius:14px;border-bottom-left-radius:4px;}
-  .typing i{border-radius:50%;background:var(--ink-faint);}
-  .chat-chips button{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);border:1px solid var(--line-2);border-radius:999px;}
-  .chat-chips button:hover{border-color:var(--orange);color:var(--orange);}
-  .chat-form input{border:1px solid var(--line-2);color:var(--ink);font-family:var(--sans);font-size:13.5px;border-radius:999px;}
-  .chat-form input:focus{border-color:var(--orange);}
-  .chat-form button[type="submit"]{background:var(--ink);border:1px solid var(--ink);color:var(--paper);border-radius:50%;}
-  .chat-form button[type="submit"]:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
-
-  /* route overlay */
-  .njload{background:var(--paper);font-family:var(--sans);}
-  .njload .t{font-size:13px;color:var(--ink-soft);}
-  .njload .ring{border-color:var(--line);border-top-color:var(--green);}
-  .njload .bar::after{background:var(--green);}
-
-  footer{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);}
-</style>
-
 <!-- ══ reading aids: progress, scroll-spy, mobile section nav, back to top ══ -->
 <style>
   /* the progress bar and .idx a.here existed in the markup but nothing ever drove them */
@@ -1060,5 +948,268 @@
   @media (max-width:820px){.glance .gi{grid-template-columns:repeat(2,minmax(0,1fr));}}
   @media (max-width:460px){.glance .gi{grid-template-columns:1fr;}}
 </style>
+
+<!-- ══ nj quest theme — baloo 2 / neon. overrides the page's original tokens. ══ -->
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FFF6E9;--panel:#FFFFFF;--soft:#FFFBF2;
+    --ink:#1B1A2E;--ink-soft:#6B6880;--ink-faint:#94909F;
+    --line:#E6DCC9;--line-soft:#F0E8D8;--line2:#D6C9AE;--sh:#1B1A2E;
+    --neon:#C6F600;--neon-d:#9BC400;--green:#12B76A;--orange:#FF6A1F;--purple:#7B5CFF;--sky:#2BB8F5;
+    --accent:#FF6A1F;--accent-soft:rgba(255,106,31,.12);--pos:#12B76A;--neg:#FF6A1F;
+    --warm:#6B6880;--warm-soft:rgba(107,104,128,.1);--steel:#6B6880;--shadow:0 6px 0 var(--sh);
+    --round:'Baloo 2',system-ui,sans-serif;
+    --sans:'Outfit',system-ui,-apple-system,sans-serif;
+    --serif:'Outfit',system-ui,-apple-system,sans-serif;
+    --mono:'Outfit',ui-monospace,monospace;
+    --dot:rgba(27,26,46,.07);
+  }
+  :root.njdark{
+    --paper:#15142A;--panel:#1F1E38;--soft:#1A1932;
+    --ink:#F3F1FF;--ink-soft:#9B97BC;--ink-faint:#7B77A0;
+    --line:#302E55;--line-soft:#262444;--line2:#413E6E;--sh:#09081A;
+    --neon-d:#8FB500;--accent:#FF8A4C;--dot:rgba(243,241,255,.06);
+  }
+
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7;
+    background-image:radial-gradient(circle at 1px 1px,var(--dot) 1px,transparent 0);background-size:22px 22px}
+  ::selection{background:var(--neon);color:#1B1A2E}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+  h1,h2,h3,h4,h5,.big,.close .q{font-family:var(--round) !important;font-weight:800 !important;letter-spacing:-.02em}
+  h1{font-size:clamp(28px,4.1vw,46px) !important;line-height:1.13 !important}
+  h2{font-size:clamp(22px,2.8vw,31px) !important}
+  h3{font-size:clamp(18px,2.1vw,22px) !important}
+  .sub{font-size:clamp(16px,1.8vw,18.5px) !important;line-height:1.62 !important;max-width:58ch;color:var(--ink-soft)}
+  .big{font-size:clamp(19px,2.3vw,26px) !important;line-height:1.35 !important;font-weight:700 !important}
+  .close .q{font-size:clamp(20px,2.5vw,29px) !important;line-height:1.28 !important}
+  header .col{max-width:860px}
+  mark,.mark{background:var(--neon);color:#1B1A2E;padding:.04em .12em;border-radius:7px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+  /* chunky panels */
+  .frame,.ledger,.sign,.flag,.skill-card,.how .c,.repo,.fig,.two .b,.aside,.costs,.stat,.quote{
+    background:var(--panel) !important;border:3px solid var(--ink) !important;border-radius:18px !important;box-shadow:0 6px 0 var(--sh) !important}
+  /* .facts is a full-bleed band, so card the cells rather than the band itself */
+  .facts{background:transparent !important;border:0 !important;box-shadow:none !important}
+  .facts .in{gap:14px !important;padding-top:18px !important}
+  .facts .f{background:var(--panel);border:3px solid var(--ink);border-radius:16px;box-shadow:0 5px 0 var(--sh);padding:15px 17px}
+  .facts .f .v{font-size:clamp(19px,2.4vw,25px) !important}
+  .facts .f .k{color:var(--ink-soft) !important;font-size:12.5px}
+  @media (max-width:760px){.facts .in{grid-template-columns:repeat(2,1fr) !important}}
+  @media (max-width:430px){.facts .in{grid-template-columns:1fr !important}}
+  .glance{margin-bottom:4px}
+  .fig img,.frame img{border-radius:0}
+  .rule span{background:var(--line2)}
+
+  /* nav */
+  .top{background:var(--ink);border-bottom:4px solid var(--neon);backdrop-filter:none}
+  .top .in{align-items:center}
+  .back{font-family:var(--round);font-weight:700;font-size:15px;color:#FFF8EC}
+  .back:hover{color:var(--neon)}
+  .lang{font-family:var(--round);font-weight:700;font-size:12px;color:#FFF8EC;background:transparent;
+    border:2px solid rgba(255,255,255,.3);border-radius:999px;padding:6px 10px}
+  .lang:hover{border-color:var(--neon);color:var(--neon)}
+  button#njTheme{width:32px;height:32px;display:grid;place-items:center;padding:0;border-radius:50%}
+
+  /* labels + badges */
+  .label,.lbl,.hello,.hi{font-family:var(--round) !important;font-weight:700 !important;font-size:12.5px !important;
+    letter-spacing:.1em !important;text-transform:uppercase;color:var(--orange) !important}
+  .pill,.badge,.livebadge{font-family:var(--round) !important;font-weight:700 !important;font-size:12.5px !important;
+    letter-spacing:0;text-transform:none;background:var(--neon) !important;color:#1B1A2E !important;
+    border:2px solid var(--ink) !important;padding:5px 13px !important;border-radius:999px !important}
+  .pill .dot,.livebadge .dot,.badge .dot{background:#1B1A2E !important}
+
+  /* numbers */
+  .v,.n,.facts .f .v,.nums .n,.stat .hero-n,.costs .r .val,.lrow .v{font-family:var(--round) !important;font-weight:800 !important;letter-spacing:-.02em}
+  .facts .f .v em,.v em{font-style:normal;color:var(--orange)}
+  figcaption,.cap{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft)}
+
+  /* buttons */
+  .btn{font-family:var(--round) !important;font-weight:700 !important;font-size:15.5px !important;letter-spacing:0;text-transform:none;
+    padding:13px 20px !important;border:3px solid var(--ink) !important;border-radius:14px !important;color:var(--ink);
+    background:var(--panel);box-shadow:0 5px 0 var(--sh) !important;transition:transform .12s,box-shadow .12s}
+  .btn:hover{transform:translateY(3px) !important;box-shadow:0 2px 0 var(--sh) !important}
+  .btn-p{background:var(--neon) !important;color:#1B1A2E !important;box-shadow:0 5px 0 var(--neon-d) !important}
+  .btn-p:hover{box-shadow:0 2px 0 var(--neon-d) !important}
+  .btn-g{background:var(--panel) !important}
+
+  /* at a glance */
+  .glance .gi{border:3px solid var(--ink);border-radius:18px;box-shadow:0 6px 0 var(--sh);overflow:hidden;background:var(--line)}
+  .glance .g{background:var(--panel);padding:17px 19px}
+  .glance .g .l{font-family:var(--round);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+  .glance .g .t{font-family:var(--sans);font-size:14px;color:var(--ink)}
+  .glance .g.out .t{font-family:var(--round);font-weight:800;font-size:16.5px}
+  .glance .g.out .t em{font-style:normal;color:var(--orange)}
+
+  /* reading aids */
+  .progress{height:5px !important;background:var(--neon) !important;opacity:1 !important}
+  .idx a{font-family:var(--sans);font-size:13px;font-weight:500;color:#C9C4E4;border:2px solid transparent;
+    padding:6px 12px;border-radius:999px;background:transparent}
+  .idx a:hover{background:rgba(255,255,255,.1);color:#fff}
+  .idx a.here{background:var(--neon);color:#1B1A2E;border-color:var(--neon);font-weight:700}
+  .idx a.here::before{background:#1B1A2E}
+  .idxwrap::after{background:linear-gradient(to right,transparent,var(--ink))}
+  .totop{font-family:var(--round);font-weight:700;font-size:14px;background:var(--panel);color:var(--ink);
+    border:3px solid var(--ink);border-radius:999px;box-shadow:0 5px 0 var(--sh);padding:10px 16px}
+  .totop:hover{color:var(--orange);transform:translateY(3px);box-shadow:0 2px 0 var(--sh)}
+
+  /* chat */
+  .chat-fab{background:var(--panel);border:3px solid var(--ink);border-radius:18px;box-shadow:0 5px 0 var(--sh)}
+  .chat-fab .dot{background:var(--green) !important;border-color:var(--panel) !important}
+  .chat-panel{background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:0 9px 0 var(--sh)}
+  .chat-top,.chat-form{background:var(--soft) !important;border-color:var(--ink) !important;border-width:3px}
+  .chat-top{border-bottom-style:solid}.chat-form{border-top-style:solid}
+  .chat-top .n,.chat-top .nswap{font-family:var(--round);font-weight:800;font-size:16px}
+  .chat-top .s{font-size:11.5px;color:var(--ink-soft)}
+  .msg{font-size:14px;border:2px solid var(--ink);border-radius:16px}
+  .msg.bot{background:var(--panel) !important;border-bottom-left-radius:5px}
+  .msg.me{background:var(--neon) !important;color:#1B1A2E !important;border-bottom-right-radius:5px}
+  .msg a{color:var(--orange);font-weight:600}.msg.me a{color:#1B1A2E}
+  .typing{background:var(--panel) !important;border:2px solid var(--ink);border-radius:16px;border-bottom-left-radius:5px}
+  .typing i{border-radius:50%;background:var(--ink-faint)}
+  .chat-chips button{font-family:var(--sans);font-size:11.5px;background:var(--panel) !important;border:2px solid var(--line2);border-radius:999px;color:var(--ink-soft)}
+  .chat-chips button:hover{border-color:var(--orange);color:var(--orange)}
+  .chat-form input{background:var(--panel) !important;border:2px solid var(--ink);border-radius:999px;color:var(--ink);font-family:var(--sans)}
+  .chat-form button[type="submit"]{background:var(--neon);border:2px solid var(--ink);color:#1B1A2E;border-radius:50%}
+  .chat-form button[type="submit"]:hover{background:var(--orange);color:#fff}
+
+  /* route overlay */
+  .njload{background:var(--paper);font-family:var(--round);font-weight:700}
+  .njload .t{font-size:16px;color:var(--ink)}
+  .njload .ring{display:none}
+  .njload .bar{width:200px;height:13px;background:var(--panel);border:3px solid var(--ink);border-radius:999px}
+  .njload .bar::after{background:var(--neon)}
+
+  /* toasts */
+  .toasts{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;
+    gap:9px;align-items:center;pointer-events:none;width:min(420px,calc(100vw - 24px))}
+  .toast{display:flex;align-items:center;gap:12px;background:var(--ink);color:#FFF8EC;border:3px solid var(--ink);
+    border-radius:16px;padding:11px 16px 11px 12px;box-shadow:0 6px 0 var(--sh);width:100%;
+    opacity:0;transform:translateY(16px) scale(.96);transition:opacity .26s,transform .26s cubic-bezier(.2,1.2,.4,1)}
+  .toast.in{opacity:1;transform:none}
+  .toast .ic{width:38px;height:38px;border-radius:11px;background:var(--neon);display:grid;place-items:center;font-size:19px;flex:none}
+  .toast .k{font-family:var(--round);font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);display:block}
+  .toast .v{font-family:var(--round);font-weight:700;font-size:15px;line-height:1.25;display:block}
+  @media (prefers-reduced-motion:reduce){.toast{transition:opacity .18s;transform:none}.toast.in{transform:none}}
+
+  footer{font-family:var(--sans);font-size:13px;color:var(--ink-soft)}
+</style>
+<script>
+  /* theme */
+  (function(){try{
+    var b=document.getElementById('njTheme');if(!b)return;
+    var SUN='<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>';
+    var MOON='<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>';
+    var fresh=b.cloneNode(true);b.parentNode.replaceChild(fresh,b);b=fresh;
+    function set(d){document.documentElement.classList.toggle('njdark',d);b.innerHTML=d?SUN:MOON;try{localStorage.setItem('nj-theme',d?'dark':'light');}catch(e){}}
+    var s=null;try{s=localStorage.getItem('nj-theme');}catch(e){}
+    set(s==='dark');
+    b.addEventListener('click',function(){set(!document.documentElement.classList.contains('njdark'));});
+  }catch(e){}})();
+</script>
+<script>
+/* ── quest progress: shared by the homepage and every case study ──
+   stored per-browser, nothing leaves the page. all reads are wrapped because
+   localStorage throws in private windows and when site data is blocked. */
+window.njQuest=(function(){
+  var KEY='nj-quests';
+  var QUESTS=[
+    {id:'pms',    file:'hotel-pms.html',    name:'The 2am boss fight'},
+    {id:'kyc',    file:'video-kyc.html',    name:'The one-minute identity check'},
+    {id:'system', file:'design-brain.html', name:'The system that ships itself'},
+    {id:'frolic', file:'frolic.html',       name:'Thirty seconds to join'}
+  ];
+  function read(){
+    try{var s=JSON.parse(localStorage.getItem(KEY)||'{}');
+      if(!s||typeof s!=='object')s={};
+      if(!Array.isArray(s.cleared))s.cleared=[];
+      /* drop anything that is not a known quest id, in case the key was edited */
+      s.cleared=s.cleared.filter(function(id){return QUESTS.some(function(q){return q.id===id;});});
+      return s;
+    }catch(e){return {cleared:[]};}
+  }
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function count(){return read().cleared.length;}
+  function isCleared(id){return read().cleared.indexOf(id)!==-1;}
+  function clear(id){
+    var s=read();
+    if(s.cleared.indexOf(id)!==-1)return false;
+    s.cleared.push(id);save(s);return true;
+  }
+  function byId(id){for(var i=0;i<QUESTS.length;i++){if(QUESTS[i].id===id)return QUESTS[i];}return null;}
+  function host(){
+    var el=document.getElementById('toasts');
+    if(!el){el=document.createElement('div');el.className='toasts';el.id='toasts';el.setAttribute('aria-live','polite');document.body.appendChild(el);}
+    return el;
+  }
+  function toast(icon,kicker,text,ms){
+    try{
+      var h=host();
+      var t=document.createElement('div');t.className='toast';
+      var i=document.createElement('span');i.className='ic';i.textContent=icon;
+      var x=document.createElement('span');x.className='tx';
+      var k=document.createElement('span');k.className='k';k.textContent=kicker;
+      var v=document.createElement('span');v.className='v';v.textContent=text;
+      x.appendChild(k);x.appendChild(v);t.appendChild(i);t.appendChild(x);h.appendChild(t);
+      requestAnimationFrame(function(){t.classList.add('in');});
+      setTimeout(function(){
+        t.classList.remove('in');
+        setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},320);
+      },ms||4200);
+    }catch(e){}
+  }
+  return {QUESTS:QUESTS,read:read,save:save,count:count,isCleared:isCleared,clear:clear,byId:byId,toast:toast,total:QUESTS.length};
+})();
+
+</script>
+<script>
+  /* this page is a quest: toast at the halfway mark, clear it at the end */
+  (function(){try{
+    var Q=window.njQuest;if(!Q)return;
+    var file=(location.pathname.split('/').pop()||'').toLowerCase();
+    var me=null;
+    for(var i=0;i<Q.QUESTS.length;i++){if(Q.QUESTS[i].file===file)me=Q.QUESTS[i];}
+    if(!me)return;
+    var already=Q.isCleared(me.id),half=false,done=already,ticking=false;
+
+    function finish(){
+      if(done)return;
+      done=true;
+      if(Q.clear(me.id)){
+        var n=Q.count(),total=Q.total;
+        Q.toast('🏅','Quest cleared',me.name+' · '+n+'/'+total,5200);
+        if(n>=total)setTimeout(function(){Q.toast('🏆','All quests cleared','head back to the start screen',6000);},1500);
+      }
+    }
+
+    /* clearing is tied to actually reaching the closing section, not a scroll
+       percentage: lazy images keep growing these pages while you read them, so a
+       percentage of a moving total never reliably lands at the end. */
+    var endEl=document.querySelector('.close')||document.querySelector('footer');
+    if(endEl&&'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(en){if(en.isIntersecting){finish();io.disconnect();}});
+      },{threshold:.25});
+      io.observe(endEl);
+    }
+
+    function paint(){
+      ticking=false;
+      var doc=document.documentElement;
+      var max=doc.scrollHeight-window.innerHeight;
+      if(max<=0)return;
+      var pct=((window.pageYOffset||doc.scrollTop)/max);
+      if(!half&&!already&&pct>=0.5){half=true;Q.toast('⚡','Halfway',me.name);}
+      /* the observer can miss a transient intersection when lazy images reflow the
+         page under the reader, so check the geometry directly on every frame too */
+      if(endEl){
+        if(endEl.getBoundingClientRect().top < window.innerHeight*0.9)finish();
+      }else if(pct>=0.95){finish();}
+    }
+    addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(paint);}},{passive:true});
+    addEventListener('resize',paint);
+    paint();
+  }catch(e){}})();
+</script>
 </body>
 </html>
