@@ -164,10 +164,10 @@
       <a href="#stakes">stakes</a>
       <a href="#problem">problem</a>
       <a href="#fix">guest account</a>
+      <a href="#live">live</a>
       <a href="#journey">the journey</a>
       <a href="#rbac">rbac</a>
       <a href="#nightaudit">night audit</a>
-      <a href="#live">live</a>
       <a href="#hours">the hours</a>
       <a href="#decisions">decisions</a>
       <a href="#research">research</a>
@@ -189,6 +189,8 @@
   </div>
 </header>
 
+
+<div class="glance reveal"><div class="gi"><div class="g"><div class="l">Role</div><div class="t">senior product designer, research to handoff, alongside engineering</div></div><div class="g"><div class="l">Timeline</div><div class="t">8 months · dec 2025 → now</div></div><div class="g"><div class="l">Surfaces</div><div class="t">web · mobile</div></div><div class="g out"><div class="l">Outcome</div><div class="t"><em>−40%</em> front-desk training time</div></div></div></div>
 <div class="facts reveal">
   <div class="in">
     <div class="f"><div class="v">~30,000</div><div class="k">check-ins a month run through these screens</div></div>
@@ -850,6 +852,15 @@
   ::selection{background:var(--neon);color:var(--on-neon);}
   h1,h2,h3,h4,h5,.big,.close .q{font-family:var(--serif) !important;letter-spacing:-.022em;font-weight:700;}
   h1{font-weight:900;}
+  /* merriweather sets much wider than the original nunito, so the inherited sizes
+     need pulling in and the hero column needs more room */
+  header .col{max-width:880px;}
+  h1{font-size:clamp(27px,3.9vw,44px) !important;line-height:1.18 !important;}
+  .sub{font-size:clamp(15.5px,1.8vw,18px) !important;line-height:1.62 !important;max-width:60ch;}
+  .big{font-size:clamp(18px,2.2vw,25px) !important;line-height:1.38 !important;}
+  .close .q{font-size:clamp(19px,2.4vw,28px) !important;line-height:1.32 !important;}
+  h2{font-size:clamp(21px,2.7vw,30px) !important;}
+  h3{font-size:clamp(17px,2vw,21px) !important;}
   mark{background:var(--neon);color:var(--on-neon);padding:0 .12em;}
   a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
 
@@ -923,6 +934,131 @@
   .njload .bar::after{background:var(--green);}
 
   footer{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);}
+</style>
+
+<!-- ══ reading aids: progress, scroll-spy, mobile section nav, back to top ══ -->
+<style>
+  /* the progress bar and .idx a.here existed in the markup but nothing ever drove them */
+  .progress{height:3px !important;background:var(--green) !important;opacity:1 !important;}
+  .idx{display:flex !important;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;}
+  .idx::-webkit-scrollbar{display:none;}
+  .idx a{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--ink-faint);white-space:nowrap;
+    padding:6px 11px;border-radius:999px;border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;}
+  .idx a:hover{color:var(--ink);background:var(--panel-2);}
+  .idx a.here{color:var(--ink);background:var(--panel);border-color:var(--line-2);font-weight:600;}
+  .idx a.here::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px;}
+  @media (max-width:780px){
+    .idx{display:flex !important;}
+    .top .in{flex-wrap:nowrap;gap:10px;}
+    .back span.full{display:none;}
+  }
+  /* fade the nav's right edge so it reads as scrollable */
+  .idxwrap{position:relative;flex:1;min-width:0;overflow:hidden;}
+  .idxwrap::after{content:"";position:absolute;right:0;top:0;bottom:0;width:28px;pointer-events:none;
+    background:linear-gradient(to right,transparent,var(--paper));}
+
+  /* back to top */
+  .totop{position:fixed;left:clamp(12px,3vw,26px);bottom:clamp(12px,3vw,26px);z-index:88;
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12.5px;font-weight:600;
+    background:var(--panel);color:var(--ink);border:1px solid var(--line-2);padding:10px 15px;border-radius:999px;
+    cursor:pointer;box-shadow:0 10px 28px -12px rgba(20,22,26,.3);
+    opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .22s,transform .22s,border-color .18s,color .18s;}
+  .totop.on{opacity:1;transform:none;pointer-events:auto;}
+  .totop:hover{border-color:var(--orange);color:var(--orange);}
+  @media (prefers-reduced-motion:reduce){.totop{transition:opacity .15s;transform:none;}}
+  @media (max-width:560px){.totop span.t{display:none;}.totop{padding:11px;}}
+</style>
+<button class="totop" id="toTop" aria-label="back to top"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg><span class="t">Top</span></button>
+<script>
+  (function(){try{
+    var bar=document.getElementById('progress');
+    var links=[].slice.call(document.querySelectorAll('.idx a[href^="#"]'));
+    var top=document.querySelector('.top');
+    var btn=document.getElementById('toTop');
+    var nav=document.querySelector('.idx');
+    var secs=links.map(function(a){
+      var el=document.getElementById(a.getAttribute('href').slice(1));
+      return el?{a:a,el:el}:null;
+    }).filter(Boolean);
+    /* follow the page, not the nav: a link may be listed out of document order */
+    secs.sort(function(p,q){
+      return (p.el.compareDocumentPosition(q.el)&Node.DOCUMENT_POSITION_FOLLOWING)?-1:1;
+    });
+    var cur=null,ticking=false;
+
+    function navH(){return top?top.getBoundingClientRect().height:0;}
+
+    function paint(){
+      ticking=false;
+      var doc=document.documentElement;
+      var max=doc.scrollHeight-window.innerHeight;
+      var y=window.pageYOffset||doc.scrollTop;
+
+      if(bar)bar.style.width=(max>0?Math.min(100,Math.max(0,(y/max)*100)):0)+'%';
+      if(btn)btn.classList.toggle('on',y>window.innerHeight*0.9);
+
+      if(!secs.length)return;
+      /* the section whose top has passed just under the sticky nav */
+      var line=y+navH()+Math.min(160,window.innerHeight*0.25),found=null;
+      /* document-relative top: offsetTop is measured against the nearest positioned
+         ancestor, which differs between sections and makes the spy jump backwards */
+      for(var i=0;i<secs.length;i++){
+        var top_i=secs[i].el.getBoundingClientRect().top+y;
+        if(top_i<=line)found=secs[i];
+      }
+      /* at the very bottom the last section wins, even if it is short */
+      if(max>0&&y>=max-2)found=secs[secs.length-1];
+      if(found!==cur){
+        if(cur)cur.a.classList.remove('here');
+        if(found){
+          found.a.classList.add('here');
+          /* keep the active chip in view in the scrolling nav */
+          if(nav&&nav.scrollWidth>nav.clientWidth){
+            var l=found.a.offsetLeft,w=found.a.offsetWidth;
+            if(l<nav.scrollLeft||l+w>nav.scrollLeft+nav.clientWidth){
+              nav.scrollTo?nav.scrollTo({left:Math.max(0,l-16),behavior:'smooth'}):nav.scrollLeft=l-16;
+            }
+          }
+        }
+        cur=found;
+      }
+    }
+    function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(paint);}}
+
+    addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',onScroll);
+    addEventListener('load',paint);
+    paint();
+
+    if(btn)btn.addEventListener('click',function(){
+      var smooth=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo(smooth?{top:0,behavior:'smooth'}:0,0);
+    });
+
+    /* wrap the nav so the scroll-fade sits on a positioned parent */
+    if(nav&&nav.parentNode&&!nav.parentNode.classList.contains('idxwrap')){
+      var w=document.createElement('div');w.className='idxwrap';
+      nav.parentNode.insertBefore(w,nav);w.appendChild(nav);
+    }
+  }catch(e){}})();
+</script>
+
+<!-- ══ at a glance — the scan-in-ten-seconds strip ══ -->
+<style>
+
+  /* the at-a-glance strip now carries role and surfaces */
+  header .meta{display:none;}
+  .glance{max-width:var(--wide,1240px);margin:0 auto;padding:0 var(--gut,32px);}
+  .glance .gi{border:1px solid var(--line);background:var(--panel);display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);}
+  .glance .g{background:var(--panel);padding:18px 20px;}
+  .glance .g .l{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px;}
+  .glance .g .t{font-family:var(--sans);font-size:14px;line-height:1.5;color:var(--ink);}
+  .glance .g.out .t{font-family:var(--serif);font-size:15.5px;font-weight:700;letter-spacing:-.015em;}
+  .glance .g.out .t em{font-style:normal;color:var(--orange);}
+  @media (max-width:820px){.glance .gi{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (max-width:460px){.glance .gi{grid-template-columns:1fr;}}
 </style>
 </body>
 </html>

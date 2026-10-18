@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="description" content="turning a 200+ component design system into an ai skill inside the company orchestrator — design shipping ~35% faster." />
+<meta name="description" content="moving a 200+ component design system out of figma and into the repo teams build in — design shipping ~35% faster." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%236D28D9'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='26' font-weight='bold' fill='white' text-anchor='middle'%3Enj%3C/text%3E%3C/svg%3E" />
-<meta property="og:title" content="Design Brain Case Study — Nitish Kumar Jha" />
+<meta property="og:title" content="Design System Case Study — Nitish Kumar Jha" />
 <meta property="og:description" content="turning a 200+ component design system into an ai skill inside the company orchestrator — design shipping ~35% faster." />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<title>Design Brain Case Study — Nitish Kumar Jha</title>
+<title>Design System Case Study — Nitish Kumar Jha</title>
 </head>
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -142,9 +142,9 @@
     <nav class="idx">
       <a href="#stakes">stakes</a>
       <a href="#move">the move</a>
-      <a href="#inside">inside the skill</a>
+      <a href="#inside">inside the system</a>
       <a href="#repo">design → dev</a>
-      <a href="#brain">the brain</a>
+      <a href="#next">what's next</a>
       <a href="#shipped">status</a>
     </nav><button class="lang" id="njTheme" aria-label="toggle dark theme" title="toggle dark theme"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button>
   </div>
@@ -152,20 +152,22 @@
 
 <header id="top">
   <div class="col">
-    <span class="label reveal">case study · design infrastructure · digistay (current role)</span>
-    <h1 class="reveal">shipping design ~35% faster by turning a 200+ component design system into an ai skill</h1>
-    <p class="sub reveal">digistay runs an internal ai orchestrator — dozens of skills for operations, business rules and integrations. i wrote our design system into it as a skill of its own: 200+ components with priorities, brand rules, tokens, patterns. now anyone can prompt and get on-brand output. and when the fix is small, i don't file a ticket — i open the frontend repo and push the pr myself.</p>
-    <span class="livebadge reveal"><span class="dot"></span> skill live in the orchestrator · design brain in progress</span>
+    <span class="label reveal">case study · design systems · digistay (current role)</span>
+    <h1 class="reveal">shipping design ~35% faster by moving a 200+ component system into the repo teams actually build in</h1>
+    <p class="sub reveal">our design system lived in figma and a pdf nobody opened mid-task. i rewrote it as eight versioned spec files in the company repo — 200+ components, each with a priority, plus brand rules, tokens, patterns and grid. the answer now sits where the work happens. and when a fix is small, i don't file a ticket — i open the frontend repo and push the pr myself.</p>
+    <span class="livebadge reveal"><span class="dot"></span> live and in use · ~35% faster to handoff</span>
     <div class="meta reveal">
-      <span><b>role</b> senior product designer — and author of the skill</span>
-      <span><b>surfaces</b> the orchestrator · github · the frontend repo</span>
+      <span><b>role</b> senior product designer — and author of the system</span>
+      <span><b>surfaces</b> the component library · github · the frontend repo</span>
     </div>
   </div>
 </header>
 
+
+<div class="glance reveal"><div class="gi"><div class="g"><div class="l">Role</div><div class="t">senior product designer — and author of the system</div></div><div class="g"><div class="l">Timeline</div><div class="t">ongoing · current role</div></div><div class="g"><div class="l">Surfaces</div><div class="t">the component library · github · the frontend repo</div></div><div class="g out"><div class="l">Outcome</div><div class="t"><em>~35%</em> faster design to handoff</div></div></div></div>
 <div class="facts reveal">
   <div class="in">
-    <div class="f"><div class="v"><em>1 skill</em></div><div class="k">live in the company orchestrator, alongside dozens of ops skills</div></div>
+    <div class="f"><div class="v"><em>live</em></div><div class="k">in the repo every product team builds from</div></div>
     <div class="f"><div class="v">8 files</div><div class="k">brand · components · tokens · patterns · icons · grid, as code</div></div>
     <div class="f"><div class="v">200+</div><div class="k">components codified, each with a priority</div></div>
     <div class="f"><div class="v">prs, not tickets</div><div class="k">minor ui fixes: i change the code and open the pull request myself</div></div>
@@ -175,23 +177,23 @@
 <section id="stakes" class="block col">
   <span class="label reveal">why it matters</span>
   <p class="big reveal" style="margin-top:16px;">every team asks design the same small questions. which component? what spacing? is this on-brand? the answers lived in our design system, but nobody opens a document mid-task. they ask the designer, and they wait.</p>
-  <p class="reveal soft">digistay runs an internal ai orchestrator with skills for operations, business rules and integrations. it knew the business. it didn't know our design standards, so anything it generated looked off-brand. i closed that gap: <span class="mark">if the ai knows the design system, everyone has a designer on call.</span></p>
+  <p class="reveal soft">the system already had the answers. it just lived somewhere nobody worked — a figma library you have to go and open, a pdf two versions behind. so people guessed, or they queued. i closed that gap: <span class="mark">if the answer lives in the repo, everyone has a designer on call.</span></p>
 </section>
 
 <div class="rule reveal"><span></span></div>
 
 <section id="move" class="block col">
   <span class="label reveal">the move</span>
-  <p class="big reveal" style="margin-top:16px;">i wrote the design system as an agent skill, the same way engineers write business rules.</p>
-  <p class="reveal soft">instead of a pdf or a figma page, the design system became a skill in the company repo: versioned, committed, sitting next to the operational skills. design now lives where the work happens.</p>
+  <p class="big reveal" style="margin-top:16px;">i wrote the design system the way engineers write specs — versioned, committed, reviewable.</p>
+  <p class="reveal soft">instead of a pdf or a figma page, the design system became source files in the company repo: versioned, committed, sitting next to the code they govern. a change to the system is a pull request now, not an announcement.</p>
 </section>
 
 <div class="repo reveal">
   <div class="card">
-    <div class="bar"><span class="path">digistay-orchestrator / .claude / skills / digistay-design-system</span></div>
+    <div class="bar"><span class="path">digistay-frontend / docs / design-system</span></div>
     <pre><span class="d">├─</span> assets/
 <span class="d">├─</span> README.md
-<span class="d">├─</span> SKILL.md
+<span class="d">├─</span> SYSTEM.md
 <span class="d">├─</span> brand.md
 <span class="d">├─</span> components.md      <span class="d">· 200+ components, prioritised</span>
 <span class="d">├─</span> grid-spacing.md
@@ -199,13 +201,13 @@
 <span class="d">├─</span> patterns.md
 <span class="d">└─</span> tokens.md
 
-<span class="g">commit</span> <span class="c">skills: add digistay-design-system skill</span></pre>
+<span class="g">commit</span> <span class="c">docs: add the digistay design system</span></pre>
   </div>
-  <p class="cap"><b>the actual shape of the skill</b> — real file structure from the company repo. one of dozens of skills in the orchestrator; design now sits in that row too.</p>
+  <p class="cap"><b>the actual shape of the system</b> — real file structure from the company repo. it sits beside the code it governs, so it is versioned and reviewed like everything else.</p>
 </div>
 
 <div class="col">
-  <blockquote class="quote reveal">a skill that teaches the ai the digistay design system — so anyone can prompt "build a booking confirmation page" and get on-brand, responsive, accessible output.
+  <blockquote class="quote reveal">the single source for the digistay design system — so anyone building a booking confirmation page gets on-brand, responsive, accessible output without waiting on design.
     <span class="who">— from the repo readme</span>
   </blockquote>
 </div>
@@ -213,17 +215,17 @@
 <div class="rule reveal" style="margin-top:clamp(36px,6vw,72px);"><span></span></div>
 
 <section id="inside" class="block col">
-  <span class="label reveal">inside the skill</span>
-  <p class="big reveal" style="margin-top:16px;">listing components was easy. teaching the ai which one to reach for first was the real work.</p>
+  <span class="label reveal">inside the system</span>
+  <p class="big reveal" style="margin-top:16px;">listing components was easy. ranking which one to reach for first was the real work.</p>
   <div class="files reveal">
-    <div class="r"><span class="m">brand.md</span><span class="t"><b>the non-negotiables.</b> voice, color, what digistay looks like and refuses to look like. everything the brain produces passes through this.</span></div>
-    <div class="r"><span class="m">components.md</span><span class="t"><b>the 200+ list, prioritised.</b> not an inventory — a ranking. the ai reaches for the right component first, not any component that fits.</span></div>
+    <div class="r"><span class="m">brand.md</span><span class="t"><b>the non-negotiables.</b> voice, color, what digistay looks like and refuses to look like. everything built here passes through this.</span></div>
+    <div class="r"><span class="m">components.md</span><span class="t"><b>the 200+ list, prioritised.</b> not an inventory — a ranking, so people reach for the right component first, not any component that fits.</span></div>
     <div class="r"><span class="m">tokens.md</span><span class="t"><b>the numbers behind consistency.</b> color, type and spacing as values, so output is measurably on-system, not approximately.</span></div>
     <div class="r"><span class="m">grid-spacing.md</span><span class="t"><b>how things sit.</b> the rhythm that makes a screen feel like ours before you read a word of it.</span></div>
     <div class="r"><span class="m">patterns.md</span><span class="t"><b>how screens compose.</b> components are vocabulary; patterns are grammar — list pages, detail pages, modals that behave.</span></div>
     <div class="r"><span class="m">icons.md + assets/</span><span class="t"><b>the physical vocabulary.</b> what exists, so nothing gets invented twice.</span></div>
   </div>
-  <p class="reveal soft" style="margin-top:26px;">writing it was its own audit: you cannot hand-wave a priority to a machine. every "it depends" i'd been carrying in my head had to become a rule i could defend.</p>
+  <p class="reveal soft" style="margin-top:26px;">writing it was its own audit: you cannot hand-wave a priority in a spec someone will follow literally. every "it depends" i'd been carrying in my head had to become a rule i could defend.</p>
 </section>
 
 <div class="rule reveal"><span></span></div>
@@ -236,10 +238,10 @@
 
 <div class="rule reveal"><span></span></div>
 
-<section id="brain" class="block col">
-  <span class="label reveal">where this goes · the design brain</span>
-  <p class="big reveal" style="margin-top:16px;">the skill is step one. the plan is bigger.</p>
-  <p class="reveal soft">what i'm building next: an agent with the company's full context — product, users, brand history — that thinks like a senior product designer and a creative head at once. cross-functional teams ask it first: marketing checks a layout, engineering checks a flow, sales mocks a screen for a demo. everything it produces routes through the brand rules before it ships. honestly labeled: <b>in progress</b> — and the parts that exist are already answering questions that used to wait for me.</p>
+<section id="next" class="block col">
+  <span class="label reveal">where this goes</span>
+  <p class="big reveal" style="margin-top:16px;">the files are step one. the work now is adoption.</p>
+  <p class="reveal soft">a design system only pays off if it is the easiest path, not the official one. so what's next is unglamorous and measurable: coverage for the modules not in it yet, usage checks so we know which components teams actually reach for and which ones quietly rot, and contribution rules so another team can add to the system without eroding it. honestly labeled: <b>in progress</b> — the parts that exist are already answering questions that used to wait for me.</p>
 </section>
 
 <div class="rule reveal"><span></span></div>
@@ -247,20 +249,20 @@
 <section class="block col">
   <span class="label reveal">decisions underneath</span>
   <ol class="pr" style="margin-top:20px;">
-    <li class="reveal"><h4>write for the machine reader</h4><p>a design system pdf persuades humans; a skill instructs machines. same truths, different grammar — and the machine version never skims.</p></li>
+    <li class="reveal"><h4>write it where the work happens</h4><p>a pdf has to be remembered; a file in the repo is already open. same truths, different grammar — and this version can never be two versions behind.</p></li>
     <li class="reveal"><h4>priorities, not inventories</h4><p>200 components listed is noise. 200 components ranked is judgment. the ranking is the design work.</p></li>
-    <li class="reveal"><h4>branding is the gate</h4><p>whatever the brain produces, it passes through brand rules before anyone ships it. taste isn't optional at scale — it's enforced.</p></li>
+    <li class="reveal"><h4>branding is the gate</h4><p>whatever gets built, it passes through the brand rules before it ships. taste isn't optional at scale — it has to be written down to survive.</p></li>
     <li class="reveal"><h4>design owns the small diffs</h4><p>a ticket for a 4px fix costs more than the fix. push the pr, let engineering review, keep the backlog for real work.</p></li>
-    <li class="reveal"><h4>grow an organ at a time</h4><p>one skill shipped and used beats a grand brain announced. the roadmap is incremental on purpose.</p></li>
+    <li class="reveal"><h4>ship a file at a time</h4><p>one file shipped and used beats a whole system announced. the rollout is incremental on purpose.</p></li>
   </ol>
 </section>
 
 <section id="shipped" class="block col">
   <span class="label reveal">status · honestly labeled</span>
   <div class="ledger reveal">
-    <div class="r"><span class="m">digistay-design-system skill</span><span class="s ok">● live in the orchestrator</span></div>
+    <div class="r"><span class="m">the design system, in the repo</span><span class="s ok">● live and in use</span></div>
     <div class="r"><span class="m">design → dev prs</span><span class="s ok">● routine practice</span></div>
-    <div class="r"><span class="m">the design brain</span><span class="s wip">◐ in progress</span></div>
+    <div class="r"><span class="m">full module coverage</span><span class="s wip">◐ in progress</span></div>
   </div>
   <p class="reveal soft" style="margin-top:24px;font-family:var(--sans);font-size:14.5px;">the repo is company-internal, so it stays unlinked here — the structure above is its real shape. happy to walk through the actual files in a conversation.</p>
 </section>
@@ -269,11 +271,11 @@
 
 <section class="block col">
   <span class="label reveal">what surprised me</span>
-  <p class="reveal" style="margin-top:16px;">the design system used to be a document people forgot. now it's a colleague people ask. and the act of writing it for a machine made me a sharper designer — every vague preference had to become a defensible rule.</p>
+  <p class="reveal" style="margin-top:16px;">the design system used to be a document people forgot. now it's the path of least resistance — the fastest way to build the thing is also the on-brand way. and writing it all down made me a sharper designer: every vague preference had to become a rule i could defend out loud.</p>
 </section>
 
 <div class="close col">
-  <p class="q reveal">the next design system won't be a pdf. it will be something you talk to. i'd rather be the designer who builds that than the one who waits for it.</p>
+  <p class="q reveal">the next design system won't be a pdf you're asked to read. it'll be the fastest way to build the thing. i'd rather be the designer who builds that than the one who maintains the pdf.</p>
   <div class="btns reveal">
     <a href="./frolic.html" class="btn btn-p">next: league play at frolic →</a>
     <a href="mailto:nj.nitishjha@gmail.com" class="btn btn-g"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg> get in touch</a>
@@ -281,7 +283,7 @@
   </div>
 </div>
 
-<footer>© 2026 Nitish Kumar Jha · product designer · the design brain</footer>
+<footer>© 2026 Nitish Kumar Jha · product designer · design systems</footer>
 
 <script>
   (function(){var b=document.getElementById('progress');
@@ -670,6 +672,15 @@
   ::selection{background:var(--neon);color:var(--on-neon);}
   h1,h2,h3,h4,h5,.big,.close .q{font-family:var(--serif) !important;letter-spacing:-.022em;font-weight:700;}
   h1{font-weight:900;}
+  /* merriweather sets much wider than the original nunito, so the inherited sizes
+     need pulling in and the hero column needs more room */
+  header .col{max-width:880px;}
+  h1{font-size:clamp(27px,3.9vw,44px) !important;line-height:1.18 !important;}
+  .sub{font-size:clamp(15.5px,1.8vw,18px) !important;line-height:1.62 !important;max-width:60ch;}
+  .big{font-size:clamp(18px,2.2vw,25px) !important;line-height:1.38 !important;}
+  .close .q{font-size:clamp(19px,2.4vw,28px) !important;line-height:1.32 !important;}
+  h2{font-size:clamp(21px,2.7vw,30px) !important;}
+  h3{font-size:clamp(17px,2vw,21px) !important;}
   mark{background:var(--neon);color:var(--on-neon);padding:0 .12em;}
   a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
 
@@ -743,6 +754,131 @@
   .njload .bar::after{background:var(--green);}
 
   footer{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);}
+</style>
+
+<!-- ══ reading aids: progress, scroll-spy, mobile section nav, back to top ══ -->
+<style>
+  /* the progress bar and .idx a.here existed in the markup but nothing ever drove them */
+  .progress{height:3px !important;background:var(--green) !important;opacity:1 !important;}
+  .idx{display:flex !important;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;}
+  .idx::-webkit-scrollbar{display:none;}
+  .idx a{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--ink-faint);white-space:nowrap;
+    padding:6px 11px;border-radius:999px;border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;}
+  .idx a:hover{color:var(--ink);background:var(--panel-2);}
+  .idx a.here{color:var(--ink);background:var(--panel);border-color:var(--line-2);font-weight:600;}
+  .idx a.here::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px;}
+  @media (max-width:780px){
+    .idx{display:flex !important;}
+    .top .in{flex-wrap:nowrap;gap:10px;}
+    .back span.full{display:none;}
+  }
+  /* fade the nav's right edge so it reads as scrollable */
+  .idxwrap{position:relative;flex:1;min-width:0;overflow:hidden;}
+  .idxwrap::after{content:"";position:absolute;right:0;top:0;bottom:0;width:28px;pointer-events:none;
+    background:linear-gradient(to right,transparent,var(--paper));}
+
+  /* back to top */
+  .totop{position:fixed;left:clamp(12px,3vw,26px);bottom:clamp(12px,3vw,26px);z-index:88;
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12.5px;font-weight:600;
+    background:var(--panel);color:var(--ink);border:1px solid var(--line-2);padding:10px 15px;border-radius:999px;
+    cursor:pointer;box-shadow:0 10px 28px -12px rgba(20,22,26,.3);
+    opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .22s,transform .22s,border-color .18s,color .18s;}
+  .totop.on{opacity:1;transform:none;pointer-events:auto;}
+  .totop:hover{border-color:var(--orange);color:var(--orange);}
+  @media (prefers-reduced-motion:reduce){.totop{transition:opacity .15s;transform:none;}}
+  @media (max-width:560px){.totop span.t{display:none;}.totop{padding:11px;}}
+</style>
+<button class="totop" id="toTop" aria-label="back to top"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg><span class="t">Top</span></button>
+<script>
+  (function(){try{
+    var bar=document.getElementById('progress');
+    var links=[].slice.call(document.querySelectorAll('.idx a[href^="#"]'));
+    var top=document.querySelector('.top');
+    var btn=document.getElementById('toTop');
+    var nav=document.querySelector('.idx');
+    var secs=links.map(function(a){
+      var el=document.getElementById(a.getAttribute('href').slice(1));
+      return el?{a:a,el:el}:null;
+    }).filter(Boolean);
+    /* follow the page, not the nav: a link may be listed out of document order */
+    secs.sort(function(p,q){
+      return (p.el.compareDocumentPosition(q.el)&Node.DOCUMENT_POSITION_FOLLOWING)?-1:1;
+    });
+    var cur=null,ticking=false;
+
+    function navH(){return top?top.getBoundingClientRect().height:0;}
+
+    function paint(){
+      ticking=false;
+      var doc=document.documentElement;
+      var max=doc.scrollHeight-window.innerHeight;
+      var y=window.pageYOffset||doc.scrollTop;
+
+      if(bar)bar.style.width=(max>0?Math.min(100,Math.max(0,(y/max)*100)):0)+'%';
+      if(btn)btn.classList.toggle('on',y>window.innerHeight*0.9);
+
+      if(!secs.length)return;
+      /* the section whose top has passed just under the sticky nav */
+      var line=y+navH()+Math.min(160,window.innerHeight*0.25),found=null;
+      /* document-relative top: offsetTop is measured against the nearest positioned
+         ancestor, which differs between sections and makes the spy jump backwards */
+      for(var i=0;i<secs.length;i++){
+        var top_i=secs[i].el.getBoundingClientRect().top+y;
+        if(top_i<=line)found=secs[i];
+      }
+      /* at the very bottom the last section wins, even if it is short */
+      if(max>0&&y>=max-2)found=secs[secs.length-1];
+      if(found!==cur){
+        if(cur)cur.a.classList.remove('here');
+        if(found){
+          found.a.classList.add('here');
+          /* keep the active chip in view in the scrolling nav */
+          if(nav&&nav.scrollWidth>nav.clientWidth){
+            var l=found.a.offsetLeft,w=found.a.offsetWidth;
+            if(l<nav.scrollLeft||l+w>nav.scrollLeft+nav.clientWidth){
+              nav.scrollTo?nav.scrollTo({left:Math.max(0,l-16),behavior:'smooth'}):nav.scrollLeft=l-16;
+            }
+          }
+        }
+        cur=found;
+      }
+    }
+    function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(paint);}}
+
+    addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',onScroll);
+    addEventListener('load',paint);
+    paint();
+
+    if(btn)btn.addEventListener('click',function(){
+      var smooth=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo(smooth?{top:0,behavior:'smooth'}:0,0);
+    });
+
+    /* wrap the nav so the scroll-fade sits on a positioned parent */
+    if(nav&&nav.parentNode&&!nav.parentNode.classList.contains('idxwrap')){
+      var w=document.createElement('div');w.className='idxwrap';
+      nav.parentNode.insertBefore(w,nav);w.appendChild(nav);
+    }
+  }catch(e){}})();
+</script>
+
+<!-- ══ at a glance — the scan-in-ten-seconds strip ══ -->
+<style>
+
+  /* the at-a-glance strip now carries role and surfaces */
+  header .meta{display:none;}
+  .glance{max-width:var(--wide,1240px);margin:0 auto;padding:0 var(--gut,32px);}
+  .glance .gi{border:1px solid var(--line);background:var(--panel);display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);}
+  .glance .g{background:var(--panel);padding:18px 20px;}
+  .glance .g .l{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px;}
+  .glance .g .t{font-family:var(--sans);font-size:14px;line-height:1.5;color:var(--ink);}
+  .glance .g.out .t{font-family:var(--serif);font-size:15.5px;font-weight:700;letter-spacing:-.015em;}
+  .glance .g.out .t em{font-style:normal;color:var(--orange);}
+  @media (max-width:820px){.glance .gi{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (max-width:460px){.glance .gi{grid-template-columns:1fr;}}
 </style>
 </body>
 </html>
